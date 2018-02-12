@@ -9,7 +9,11 @@
 
 Skeleton of participants module
 
-# Authors
+# Authors (2017/2018)
+
+- Miguel Martínez Serrano (UO237030)
+
+# Authors (2016/2017)
 
 - David Lorenzo González (UO244795)
 - Martín Peláez Díaz (UO236974)
