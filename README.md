@@ -23,6 +23,9 @@ Skeleton of participants module
 - Laura Menéndez Pérez (UO244646)
 - Fernando Palazuelo Ginzo (UO244588)
 
+Ejecucion con Maven:
+- mvn spring-boot:run
+- El servicio arranca en localhost/8080
 
 Usuarios de prueba para la aplicación:
 
