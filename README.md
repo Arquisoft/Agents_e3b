@@ -25,7 +25,7 @@ Skeleton of participants module
 
 Ejecucion con Maven:
 - mvn spring-boot:run
-- El servicio arranca en localhost/8080
+- El servicio arranca en localhost:8080
 
 Usuarios de prueba para la aplicación:
 
