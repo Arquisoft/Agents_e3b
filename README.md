@@ -12,6 +12,7 @@ Skeleton of participants module
 # Authors (2017/2018)
 
 - Miguel Martínez Serrano (UO237030)
+- José Antonio Marín Álvarez (UO212006)
 
 # Authors (2016/2017)
 
