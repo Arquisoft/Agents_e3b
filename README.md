@@ -3,7 +3,7 @@
 [![codecov](https://codecov.io/gh/Arquisoft/participants1a/branch/master/graph/badge.svg)](https://codecov.io/gh/Arquisoft/participants1a)
 
 
-# participants1a
+# Loader1a
 
 [![Join the chat at https://gitter.im/Arquisoft/participants1a](https://badges.gitter.im/Arquisoft/participants1a.svg)](https://gitter.im/Arquisoft/participants1a?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -17,7 +17,7 @@ Skeleton of participants module
 - Andrés Ángel González Granda (UO68216)
 
 # Authors (2016/2017)
-
+(participants1a)
 - David Lorenzo González (UO244795)
 - Martín Peláez Díaz (UO236974)
 - Laura Menéndez Pérez (UO244646)
