@@ -55,4 +55,4 @@ local.properties
 
 # IntelliJ proyects
 .idea
-.iml
+*.iml
