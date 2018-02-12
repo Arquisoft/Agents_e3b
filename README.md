@@ -1,6 +1,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/52c0a7fa26854206a17e11d781bd421c)](https://www.codacy.com/app/jelabra/Agents_e3b?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Arquisoft/Agents_e3b&amp;utm_campaign=Badge_Grade)
 [![Build Status](https://travis-ci.org/Arquisoft/Agents_e3b.svg?branch=master)](https://travis-ci.org/Arquisoft/Agents_e3b)
 [![codecov](https://codecov.io/gh/Arquisoft/Agents_e3b/branch/master/graph/badge.svg)](https://codecov.io/gh/Arquisoft/Agents_e3b)
+[![Gitter](https://badges.gitter.im/Arquisoft/Agents_e3b.svg)](https://gitter.im/Arquisoft/Agents_e3b?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 
 # Agents e3b
