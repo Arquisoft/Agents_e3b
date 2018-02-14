@@ -64,7 +64,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T1domainModelEqualsTest() {
+	public void T1DomainModelEqualsTest() {
 		Participant participant1 = getParticipant.getParticipant("paco@hotmail.com");
 		Participant participant2 = getParticipant.getParticipant("pac@hotmail.com");
 		Participant participant3 = getParticipant.getParticipant("paco@hotmail.com");
@@ -77,7 +77,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T2domainModelToString() {
+	public void T2DomainModelToString() {
 		Participant participant1 = getParticipant.getParticipant("paco@hotmail.com");
 		assertEquals(participant1.toString(),
 				"Participant [nombre=" + participant1.getNombre() + ", apellidos=" + participant1.getApellidos()
@@ -87,7 +87,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T3domainModelHashCodeTest() {
+	public void T3DomainModelHashCodeTest() {
 		Participant participant1 = getParticipant.getParticipant("paco@hotmail.com");
 		Participant participant3 = getParticipant.getParticipant("paco@hotmail.com");
 		assertEquals(participant1.hashCode(), participant3.hashCode());
