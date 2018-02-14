@@ -2,9 +2,9 @@ package asw.participants;
 
 import org.springframework.http.ResponseEntity;
 
-import asw.participants.webService.request.PeticionChangeEmailREST;
-import asw.participants.webService.request.PeticionChangePasswordREST;
-import asw.participants.webService.responses.RespuestaChangeInfoREST;
+import asw.participants.web_service.request.PeticionChangeEmailREST;
+import asw.participants.web_service.request.PeticionChangePasswordREST;
+import asw.participants.web_service.responses.RespuestaChangeInfoREST;
 
 public interface ChangeInfo {
 	/**

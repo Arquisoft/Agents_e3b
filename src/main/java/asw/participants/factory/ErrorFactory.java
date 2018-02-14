@@ -1,14 +1,14 @@
 package asw.participants.factory;
 
-import asw.participants.webService.responses.errors.ErrorResponse;
-import asw.participants.webService.responses.errors.IncorrectPasswordErrorResponse;
-import asw.participants.webService.responses.errors.PasswordDoNotMatchErrorResponse;
-import asw.participants.webService.responses.errors.RequiredEmailErrorResponse;
-import asw.participants.webService.responses.errors.RequiredPasswordErrorResponse;
-import asw.participants.webService.responses.errors.SameEmailErrorResponse;
-import asw.participants.webService.responses.errors.UnknownErrorResponse;
-import asw.participants.webService.responses.errors.UserNotFoundResponse;
-import asw.participants.webService.responses.errors.WrongEmailStyleErrorResponse;
+import asw.participants.web_service.responses.errors.ErrorResponse;
+import asw.participants.web_service.responses.errors.IncorrectPasswordErrorResponse;
+import asw.participants.web_service.responses.errors.PasswordDoNotMatchErrorResponse;
+import asw.participants.web_service.responses.errors.RequiredEmailErrorResponse;
+import asw.participants.web_service.responses.errors.RequiredPasswordErrorResponse;
+import asw.participants.web_service.responses.errors.SameEmailErrorResponse;
+import asw.participants.web_service.responses.errors.UnknownErrorResponse;
+import asw.participants.web_service.responses.errors.UserNotFoundResponse;
+import asw.participants.web_service.responses.errors.WrongEmailStyleErrorResponse;
 
 //Creacion de los distintos tipos de error.
 public class ErrorFactory {

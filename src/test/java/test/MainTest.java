@@ -34,11 +34,11 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestTemplate;
 
 import asw.Application;
-import asw.dbManagement.GetParticipant;
-import asw.dbManagement.model.Participant;
-import asw.participants.webService.request.PeticionChangeEmailREST;
-import asw.participants.webService.request.PeticionChangePasswordREST;
-import asw.participants.webService.request.PeticionInfoREST;
+import asw.db_management.GetParticipant;
+import asw.db_management.model.Participant;
+import asw.participants.web_service.request.PeticionChangeEmailREST;
+import asw.participants.web_service.request.PeticionChangePasswordREST;
+import asw.participants.web_service.request.PeticionInfoREST;
 
 @SuppressWarnings("deprecation")
 @RunWith(SpringJUnit4ClassRunner.class)

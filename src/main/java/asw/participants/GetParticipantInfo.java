@@ -2,8 +2,8 @@ package asw.participants;
 
 import org.springframework.http.ResponseEntity;
 
-import asw.participants.webService.request.PeticionInfoREST;
-import asw.participants.webService.responses.RespuestaInfoREST;
+import asw.participants.web_service.request.PeticionInfoREST;
+import asw.participants.web_service.responses.RespuestaInfoREST;
 
 public interface GetParticipantInfo {
 

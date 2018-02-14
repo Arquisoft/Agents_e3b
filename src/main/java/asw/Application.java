@@ -5,8 +5,8 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-import asw.dbManagement.model.Participant;
-import asw.dbManagement.repository.ParticipantRepository;
+import asw.db_management.model.Participant;
+import asw.db_management.repository.ParticipantRepository;
 
 import java.text.DateFormat;
 import java.text.ParseException;

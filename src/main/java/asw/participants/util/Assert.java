@@ -1,6 +1,6 @@
 package asw.participants.util;
 
-import asw.dbManagement.model.Participant;
+import asw.db_management.model.Participant;
 import asw.participants.factory.ErrorFactory;
 import asw.participants.factory.ErrorFactory.Errors;
 
