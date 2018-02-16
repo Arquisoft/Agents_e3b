@@ -65,10 +65,10 @@ public class MainTest {
 
 	@Test
 	public void T1DomainModelEqualsTest() {
-		Agent agent1 = getAgent.getParticipant("paco@hotmail.com");
-		Agent agent2 = getAgent.getParticipant("pac@hotmail.com");
-		Agent agent3 = getAgent.getParticipant("paco@hotmail.com");
-		Agent agent4 = getAgent.getParticipant("pepe@gmail.com");
+		Agent agent1 = getAgent.getAgent("paco@hotmail.com");
+		Agent agent2 = getAgent.getAgent("pac@hotmail.com");
+		Agent agent3 = getAgent.getAgent("paco@hotmail.com");
+		Agent agent4 = getAgent.getAgent("pepe@gmail.com");
 		assertFalse(agent1.equals(agent2));
 		assertFalse(agent1.equals(4));
 		assertTrue(agent1.equals(agent3));
@@ -78,7 +78,7 @@ public class MainTest {
 
 	@Test
 	public void T2DomainModelToString() {
-		Agent participant1 = getAgent.getParticipant("paco@hotmail.com");
+		Agent participant1 = getAgent.getAgent("paco@hotmail.com");
 		assertEquals(participant1.toString(),
 				"Participant [nombre=" + participant1.getNombre() + ", apellidos=" + participant1.getApellidos()
 						+ ", fechaNacimiento=" + participant1.getFechaNacimiento() + ", email="
@@ -88,8 +88,8 @@ public class MainTest {
 
 	@Test
 	public void T3DomainModelHashCodeTest() {
-		Agent participant1 = getAgent.getParticipant("paco@hotmail.com");
-		Agent participant3 = getAgent.getParticipant("paco@hotmail.com");
+		Agent participant1 = getAgent.getAgent("paco@hotmail.com");
+		Agent participant3 = getAgent.getAgent("paco@hotmail.com");
 		assertEquals(participant1.hashCode(), participant3.hashCode());
 	}
 

@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import asw.db_management.model.Agent;
 import asw.agents.util.Utilidades;
 
-@XmlRootElement(name = "participant")
+@XmlRootElement(name = "agent")
 public class RespuestaInfoREST {	
 	
 	private String firstName;
@@ -17,17 +17,12 @@ public class RespuestaInfoREST {
 	
 	public RespuestaInfoREST() {}
 	
-	public RespuestaInfoREST(Agent participant){
-		setFirstName(participant.getNombre());
-		setLastName(participant.getApellidos());
-		setEdad(Utilidades.getEdad(participant.getFechaNacimiento()));
-		setID(participant.getDNI());
-		setEmail(participant.getEmail());
-//		this.firstName = participant.getNombre();
-//		this.lastName = participant.getApellidos();
-//		this.edad = Utilidades.getEdad(participant.getFechaNacimiento());
-//		this.ID = participant.getDNI();
-//		this.email = participant.getEmail();
+	public RespuestaInfoREST(Agent agent){
+		setFirstName(agent.getNombre());
+		setLastName(agent.getApellidos());
+		setEdad(Utilidades.getEdad(agent.getFechaNacimiento()));
+		setID(agent.getDNI());
+		setEmail(agent.getEmail());
 	}
 
 	public String getFirstName() {

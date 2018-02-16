@@ -23,12 +23,12 @@ public class UpdateInfoImpl implements UpdateInfo {
 	 * la actual coincida con la del participante
 	 */
 	@Override
-	public void updatePassword(Agent participant, String password, String newPassword) {
+	public void updatePassword(Agent agent, String password, String newPassword) {
 		
 		if (password != null && newPassword != null && !(password.equals(newPassword))
-				&& participant.getPassword().equals(password)) {
-			participant.setPassword(newPassword);
-			this.repository.save(participant);
+				&& agent.getPassword().equals(password)) {
+			agent.setPassword(newPassword);
+			this.repository.save(agent);
 		}
 		
 	}
@@ -38,10 +38,10 @@ public class UpdateInfoImpl implements UpdateInfo {
 	 * Se comprueba que el email no esté vacío
 	 */
 	@Override
-	public void updateEmail(Agent participant, String email) {
+	public void updateEmail(Agent agent, String email) {
 		if(email != null){
-			participant.setEmail(email);
-			this.repository.save(participant);
+			agent.setEmail(email);
+			this.repository.save(agent);
 		}
 	}
 

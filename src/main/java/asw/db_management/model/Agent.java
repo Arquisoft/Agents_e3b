@@ -17,7 +17,7 @@ public class Agent {
 	@GeneratedValue
 	private Long id;
 
-	// Atributos del participante
+	// Atributos del agente
 	private String nombre;
 	private String apellidos;
 	private String password;

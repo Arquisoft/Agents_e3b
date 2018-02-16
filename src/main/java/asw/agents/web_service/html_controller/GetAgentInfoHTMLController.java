@@ -37,16 +37,16 @@ public class GetAgentInfoHTMLController {
 		Assert.isEmailValid(email);
 		Assert.isPasswordEmpty(password);
 
-		Agent agent = getAgent.getParticipant(email);
+		Agent agent = getAgent.getAgent(email);
 
 		Assert.isAgentNull(agent);
 		Assert.isPasswordCorrect(password, agent);
 
-		session.setAttribute("participant", agent);
+		session.setAttribute("agent", agent);
 
 		if (!agent.isAdmin() && !agent.isPolitician()) {
 			session.setAttribute("edad", Utilidades.getEdad(agent.getFechaNacimiento()));
-			return "datosParticipant";
+			return "datosAgent";
 		} else{
 			if(agent.isAdmin())
 				return "dashboardAdmin";
