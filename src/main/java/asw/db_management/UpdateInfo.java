@@ -1,12 +1,12 @@
 package asw.db_management;
 
-import asw.db_management.model.Participant;
+import asw.db_management.model.Agent;
 
 public interface UpdateInfo {
 	/**
 	 * Permite la solicitud de cambio de contraseña
 	 */
-	public void updatePassword(Participant participant, String password, String newPassword);
+	public void updatePassword(Agent participant, String password, String newPassword);
 	
-	public void updateEmail(Participant participant, String email);
+	public void updateEmail(Agent participant, String email);
 }
