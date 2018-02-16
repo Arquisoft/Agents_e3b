@@ -44,11 +44,11 @@ public class Assert {
 	
 	/**
 	 * 
-	 * @param participant
+	 * @param agent
 	 * @return devuelve false si no es null o excepcion
 	 */
-	public static boolean isParticipantNull(Agent participant){
-		if (participant == null) {
+	public static boolean isAgentNull(Agent agent){
+		if (agent == null) {
 			throw ErrorFactory.getError(Errors.USER_NOT_FOUND);
 		}
 		return false;		

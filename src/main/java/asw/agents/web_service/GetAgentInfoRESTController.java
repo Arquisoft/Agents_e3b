@@ -22,7 +22,7 @@ import asw.agents.web_service.responses.errors.ErrorResponse;
 public class GetAgentInfoRESTController implements GetAgentInfo {
 
 	@Autowired
-	private GetAgent getParticipant;
+	private GetAgent getAgent;
 
 	@Override
 	@RequestMapping(value = "/user", method = RequestMethod.POST, headers = { "Accept=application/json",
@@ -33,18 +33,18 @@ public class GetAgentInfoRESTController implements GetAgentInfo {
 		Assert.isEmailValid(peticion.getLogin());
 		Assert.isPasswordEmpty(peticion.getPassword());
 
-		Agent participant = getParticipant.getParticipant(peticion.getLogin());
+		Agent agent = getAgent.getParticipant(peticion.getLogin());
 
-		Assert.isParticipantNull(participant);
+		Assert.isAgentNull(agent);
 
-		Assert.isPasswordCorrect(peticion.getPassword(), participant);
+		Assert.isPasswordCorrect(peticion.getPassword(), agent);
 
 		/*
 		 * Añadimos la información al modelo, para que se muestre en la pagina
 		 * html: datosParticipant
 		 */
 
-		return new ResponseEntity<RespuestaInfoREST>(new RespuestaInfoREST(participant), HttpStatus.OK);
+		return new ResponseEntity<RespuestaInfoREST>(new RespuestaInfoREST(agent), HttpStatus.OK);
 	}
 
 	@ExceptionHandler(ErrorResponse.class)

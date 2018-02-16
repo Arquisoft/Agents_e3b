@@ -22,7 +22,7 @@ import asw.agents.web_service.responses.errors.ErrorResponse;
 public class GetAgentInfoHTMLController {
 
 	@Autowired
-	private GetAgent getParticipant;
+	private GetAgent getAgent;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String inicalicerLogin(Model model) {
@@ -37,18 +37,18 @@ public class GetAgentInfoHTMLController {
 		Assert.isEmailValid(email);
 		Assert.isPasswordEmpty(password);
 
-		Agent participant = getParticipant.getParticipant(email);
+		Agent agent = getAgent.getParticipant(email);
 
-		Assert.isParticipantNull(participant);
-		Assert.isPasswordCorrect(password, participant);
+		Assert.isAgentNull(agent);
+		Assert.isPasswordCorrect(password, agent);
 
-		session.setAttribute("participant", participant);
+		session.setAttribute("participant", agent);
 
-		if (!participant.isAdmin() && !participant.isPolitician()) {
-			session.setAttribute("edad", Utilidades.getEdad(participant.getFechaNacimiento()));
+		if (!agent.isAdmin() && !agent.isPolitician()) {
+			session.setAttribute("edad", Utilidades.getEdad(agent.getFechaNacimiento()));
 			return "datosParticipant";
 		} else{
-			if(participant.isAdmin())
+			if(agent.isAdmin())
 				return "dashboardAdmin";
 			else
 				return "dashboardPolitician";

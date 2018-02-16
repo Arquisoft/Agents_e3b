@@ -55,7 +55,7 @@ public class MainTest {
 	private RestTemplate template;
 
 	@Autowired
-	private GetAgent getParticipant;
+	private GetAgent getAgent;
 
 	@Before
 	public void setUp() throws Exception {
@@ -65,20 +65,20 @@ public class MainTest {
 
 	@Test
 	public void T1DomainModelEqualsTest() {
-		Agent participant1 = getParticipant.getParticipant("paco@hotmail.com");
-		Agent participant2 = getParticipant.getParticipant("pac@hotmail.com");
-		Agent participant3 = getParticipant.getParticipant("paco@hotmail.com");
-		Agent participant4 = getParticipant.getParticipant("pepe@gmail.com");
-		assertFalse(participant1.equals(participant2));
-		assertFalse(participant1.equals(4));
-		assertTrue(participant1.equals(participant3));
-		assertTrue(participant1.equals(participant1));
-		assertFalse(participant1.equals(participant4));
+		Agent agent1 = getAgent.getParticipant("paco@hotmail.com");
+		Agent agent2 = getAgent.getParticipant("pac@hotmail.com");
+		Agent agent3 = getAgent.getParticipant("paco@hotmail.com");
+		Agent agent4 = getAgent.getParticipant("pepe@gmail.com");
+		assertFalse(agent1.equals(agent2));
+		assertFalse(agent1.equals(4));
+		assertTrue(agent1.equals(agent3));
+		assertTrue(agent1.equals(agent1));
+		assertFalse(agent1.equals(agent4));
 	}
 
 	@Test
 	public void T2DomainModelToString() {
-		Agent participant1 = getParticipant.getParticipant("paco@hotmail.com");
+		Agent participant1 = getAgent.getParticipant("paco@hotmail.com");
 		assertEquals(participant1.toString(),
 				"Participant [nombre=" + participant1.getNombre() + ", apellidos=" + participant1.getApellidos()
 						+ ", fechaNacimiento=" + participant1.getFechaNacimiento() + ", email="
@@ -88,8 +88,8 @@ public class MainTest {
 
 	@Test
 	public void T3DomainModelHashCodeTest() {
-		Agent participant1 = getParticipant.getParticipant("paco@hotmail.com");
-		Agent participant3 = getParticipant.getParticipant("paco@hotmail.com");
+		Agent participant1 = getAgent.getParticipant("paco@hotmail.com");
+		Agent participant3 = getAgent.getParticipant("paco@hotmail.com");
 		assertEquals(participant1.hashCode(), participant3.hashCode());
 	}
 
