@@ -31,11 +31,11 @@ public class Application {
 		DateFormat formatter1 = new SimpleDateFormat("mm/DD/yyyy");
 
 		return (args) -> {
-			repository.save(new Agent("Paco González","123456","","paco@gmail.com","paco","1"));
-			repository.save(new Agent("Pepe Fernandez","123456","","pepe@gmail.com","pepe","1"));
-			repository.save(new Agent("Sensor_123 2018","123456","43.361368, -5.853591","admin@sensores.com","sensor_123","3"));
-			repository.save(new Agent("Ministerio medioambiente","123456","43.359486, -5.846986","ambiente@ministerio.com","medioambiente","2"));
-			repository.save(new Agent("Space X sensor model A","123456","33.921209, -118.327940","elonmusk@spacex.com","spacex","2"));
+			repository.save(new Agent("Paco González","123456","","paco@gmail.com","paco","Person"));
+			repository.save(new Agent("Pepe Fernandez","123456","","pepe@gmail.com","pepe","Person"));
+			repository.save(new Agent("Sensor_123 2018","123456","43.361368, -5.853591","admin@sensores.com","sensor_123","Entity"));
+			repository.save(new Agent("Ministerio medioambiente","123456","43.359486, -5.846986","ambiente@ministerio.com","medioambiente","Sensor"));
+			repository.save(new Agent("Space X sensor model A","123456","33.921209, -118.327940","elonmusk@spacex.com","spacex","Sensor"));
 		};
 	}
 }
