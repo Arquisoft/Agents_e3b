@@ -19,18 +19,13 @@ public class Agent {
 
 	// Atributos del agente
 	private String nombre;
-	private String apellidos;
 	private String password;
-	private Date fechaNacimiento;
+	private String location;
 	@Column(unique = true)
 	private String email;
 	@Column(unique = true)
-	private String DNI;
-	private String direccion;
-	private String nacionalidad;
-
-	private boolean isAdmin;
-	private boolean isPolitician;
+	private String ident; // dni, nif o lo que sea que identifique al agente
+	private String kind;
 
 	/**
 	 * Constructor vacío (ya que es para mapear)
@@ -38,100 +33,59 @@ public class Agent {
 	Agent() {
 	}
 
-	/**
-	 * Constructor
-	 * 
-	 * @param nombre
-	 * @param apellidos
-	 * @param password
-	 * @param fechaNacimiento
-	 * @param email
-	 * @param dNI
-	 * @param direccion
-	 * @param nacionalidad
-	 */
-	public Agent(String nombre, String apellidos, String password, Date fechaNacimiento, String email, String dNI,
-			String direccion, String nacionalidad, boolean isAdmin, boolean isPolitician) {
-		super();
-		this.nombre = nombre;
-		this.apellidos = apellidos;
-		this.password = password;
-		this.fechaNacimiento = fechaNacimiento;
-		this.email = email;
-		this.DNI = dNI;
-		this.direccion = direccion;
-		this.nacionalidad = nacionalidad;
-		this.isAdmin = isAdmin;
-		this.isPolitician = isPolitician;
-	}
+    public Agent(String nombre, String password, String location, String email, String ident, String kind) {
+        this.nombre = nombre;
+        this.password = password;
+        this.location = location;
+        this.email = email;
+        this.ident = ident;
+        this.kind = kind;
+    }
 
-	public Long getId() {
+    public Long getId() {
 		return id;
 	}
 
-	public String getNombre() {
-		return nombre;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public String getApellidos() {
-		return apellidos;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getLocation() {
+        return location;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
-	}
+    public String getIdent() {
+        return ident;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getKind() {
+        return kind;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getDNI() {
-		return DNI;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getDireccion() {
-		return direccion;
-	}
-
-	public String getNacionalidad() {
-		return nacionalidad;
-	}
-
-	public boolean isAdmin() {
-		return isAdmin;
-	}
-
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
-	}
-
-	public boolean isPolitician() {
-		return isPolitician;
-	}
-
-	public void setPolitician(boolean isPolitician) {
-		this.isPolitician = isPolitician;
-	}
-
-	@Override
+    @Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -150,11 +104,14 @@ public class Agent {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Participant [nombre=" + nombre + ", apellidos=" + apellidos + ", fechaNacimiento=" + fechaNacimiento + ", email=" + email + ", DNI=" + DNI + ", direccion="
-				+ direccion + ", nacionalidad=" + nacionalidad + ", isAdmin=" + isAdmin + ", isPolitician="
-				+ isPolitician + "]";
-	}
-
+    @Override
+    public String toString() {
+        return "Agent{" +
+                "nombre='" + nombre + '\'' +
+                ", location='" + location + '\'' +
+                ", email='" + email + '\'' +
+                ", ident='" + ident + '\'' +
+                ", kind='" + kind + '\'' +
+                '}';
+    }
 }

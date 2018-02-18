@@ -60,6 +60,10 @@ public class Assert {
 		}
 		return true;
 	}
+
+	public static boolean isLoginCorrec(String password, Agent agent, String kind){
+		return false;
+	}
 	
 	public static boolean isSamePassword(String password, String password2){
 		if (password.equals(password2)) {
