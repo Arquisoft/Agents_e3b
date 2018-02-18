@@ -47,4 +47,14 @@ public  class Utilidades {
 
 	}
 
+    public static int getKindCode(String kind) {
+		if(kind.equals("Person"))
+			return 1;
+		if(kind.equals("Entity"))
+			return 2;
+		if(kind.equals("Sensor"))
+			return 3;
+
+		return -1; // si no existe
+	}
 }

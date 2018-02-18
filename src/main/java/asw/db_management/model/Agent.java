@@ -24,8 +24,8 @@ public class Agent {
 	@Column(unique = true)
 	private String email;
 	@Column(unique = true)
-	private String ident; // USUARIO, dni, nif o lo que sea que identifique al agente
-	private String kind;
+	private String ident;   // USUARIO, dni, nif o lo que sea que identifique al agente
+	private String kind;    // "Person","Entity", "Sensor"
 
 	/**
 	 * Constructor vacío (ya que es para mapear)

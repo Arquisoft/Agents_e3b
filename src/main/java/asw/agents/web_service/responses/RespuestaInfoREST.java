@@ -9,65 +9,71 @@ import asw.agents.util.Utilidades;
 @XmlRootElement(name = "agent")
 public class RespuestaInfoREST {	
 	
-	private String firstName;
-	private String lastName;
-	private int edad;
-	private String ID;
+	private String nombre;
+	private String location;
 	private String email;
+	private String id;
+	private String kind;
+	private int kindCode;
+
 	
 	public RespuestaInfoREST() {}
 	
 	public RespuestaInfoREST(Agent agent){
-		setFirstName(agent.getNombre());
-		setLastName(agent.getApellidos());
-		setEdad(Utilidades.getEdad(agent.getFechaNacimiento()));
-		setID(agent.getDNI());
+		setNombre(agent.getNombre());
+		setLocation(agent.getLocation());
 		setEmail(agent.getEmail());
+		setId(agent.getIdent());
+		setKind(agent.getKind());
+		setKindCode(Utilidades.getKindCode(agent.getKind()));
+
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getNombre() {
+		return nombre;
 	}
 
-	@XmlElement
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getLocation() {
+		return location;
 	}
 
-	@XmlElement
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public int getEdad() {
-		return edad;
-	}
-
-	@XmlElement
-	public void setEdad(int edad) {
-		this.edad = edad;
-	}
-
-	public String getID() {
-		return ID;
-	}
-
-	@XmlElement
-	public void setID(String iD) {
-		ID = iD;
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	@XmlElement
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public int getKindCode() {
+		return kindCode;
+	}
+
+	public void setKindCode(int kindCode) {
+		this.kindCode = kindCode;
+	}
 }
