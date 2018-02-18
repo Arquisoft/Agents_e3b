@@ -1,5 +1,7 @@
 package asw.db_management.model;
 
+import asw.agents.util.Utilidades;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -68,6 +70,10 @@ public class Agent {
 
     public String getKind() {
         return kind;
+    }
+
+    public int getKindCode(){
+        return Utilidades.getKindCode(getKind());
     }
 
     public void setPassword(String password) {

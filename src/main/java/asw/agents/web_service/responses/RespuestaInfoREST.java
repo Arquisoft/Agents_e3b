@@ -25,7 +25,7 @@ public class RespuestaInfoREST {
 		setEmail(agent.getEmail());
 		setId(agent.getIdent());
 		setKind(agent.getKind());
-		setKindCode(Utilidades.getKindCode(agent.getKind()));
+		setKindCode(agent.getKindCode());
 
 	}
 
