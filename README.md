@@ -14,6 +14,7 @@ Agents module
 - José Antonio Marín Álvarez (UO212006)
 - Daniel Martínez Valerinao (UO252438)
 - Andrés Ángel González Granda (UO68216)
+- Kilian Pérez González (UO21504)
 
 # Authors (2016/2017)
 (participants1a)
