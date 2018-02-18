@@ -24,7 +24,7 @@ public class Agent {
 	@Column(unique = true)
 	private String email;
 	@Column(unique = true)
-	private String ident; // dni, nif o lo que sea que identifique al agente
+	private String ident; // USUARIO, dni, nif o lo que sea que identifique al agente
 	private String kind;
 
 	/**
