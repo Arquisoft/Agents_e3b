@@ -119,6 +119,10 @@ public class MainTest {
 		response = template.postForEntity(userURI, new PeticionInfoREST("pepe@gmail.com", "123456", "Person"), String.class);
 		assertThat(response.getBody(), equalTo(
 				"{\"nombre\":\"Pepe Fernandez\",\"location\":\"\",\"email\":\"pepe@gmail.com\",\"id\":\"pepe\",\"kind\":\"Person\",\"kindCode\":1}"));
+
+		response = template.postForEntity(userURI, new PeticionInfoREST("elonmusk@spacex.com", "123456", "Sensor"), String.class);
+		assertThat(response.getBody(), equalTo(
+				"{\"nombre\":\"Space X sensor model A\",\"location\":\"33.921209, -118.327940\",\"email\":\"elonmusk@spacex.com\",\"id\":\"spacex\",\"kind\":\"Sensor\",\"kindCode\":3}"));
 	}
 
 	@Test
