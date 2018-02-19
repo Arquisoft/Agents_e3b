@@ -54,15 +54,11 @@ public class Assert {
 		return false;		
 	}
 	
-	public static boolean isPasswordCorrect(String password,Agent participant){
-		if (!password.equals(participant.getPassword())) {
+	public static boolean isPasswordCorrect(String password,Agent agent){
+		if (!password.equals(agent.getPassword())) {
 			throw ErrorFactory.getError(Errors.INCORRECT_PASSWORD_DO_NOT_MATCH);
 		}
 		return true;
-	}
-
-	public static boolean isLoginCorrec(String password, Agent agent, String kind){
-		return false;
 	}
 	
 	public static boolean isSamePassword(String password, String password2){
@@ -75,6 +71,17 @@ public class Assert {
 	public static boolean isSameEmail(String email, String email2){
 		if (email.equals(email2)) {
 			throw ErrorFactory.getError(Errors.SAME_EMAIL);
+		}
+		return true;
+	}
+
+
+	public static boolean isLoginCorrect(String password, Agent agent, String kind) {
+		if (!password.equals(agent.getPassword())) {
+			throw ErrorFactory.getError(Errors.INCORRECT_PASSWORD_DO_NOT_MATCH);
+		}
+		if(!agent.getKind().equals(kind)){
+			throw ErrorFactory.getError(Errors.INCORRECT_KIND_DO_NOT_MATCH);
 		}
 		return true;
 	}

@@ -20,7 +20,8 @@ public class ErrorFactory {
 		USER_NOT_FOUND,
 		WRONG_EMAIL_STYLE,
 		INCORRECT_PASSWORD_DO_NOT_MATCH,
-		SAME_EMAIL
+		SAME_EMAIL,
+		INCORRECT_KIND_DO_NOT_MATCH
 	}
 
 	// Generar Constructor privado no queremos que se pueda tener varias
