@@ -27,25 +27,25 @@ public  class Utilidades {
 //		return true;
 //	}
 
-	public static int getEdad(Date fechaNacimiento) {
-		Calendar calendarioNacimiento = Calendar.getInstance();
-		calendarioNacimiento.setTime(fechaNacimiento);
-		int dianacimiento = calendarioNacimiento.get(Calendar.DAY_OF_YEAR);
-
-		Calendar calendariohoy = Calendar.getInstance();
-		int diaHoy = calendariohoy.get(Calendar.DAY_OF_YEAR);
-		if (dianacimiento - diaHoy == 0) {// Si la resta de días que llevamos de
-											// año es 0, significa que hemos
-											// cumplido años
-			return calendariohoy.get(Calendar.YEAR) - calendarioNacimiento.get(Calendar.YEAR);
-
-		} else {
-
-			return calendariohoy.get(Calendar.YEAR) - calendarioNacimiento.get(Calendar.YEAR) - 1;
-
-		}
-
-	}
+//	public static int getEdad(Date fechaNacimiento) {
+//		Calendar calendarioNacimiento = Calendar.getInstance();
+//		calendarioNacimiento.setTime(fechaNacimiento);
+//		int dianacimiento = calendarioNacimiento.get(Calendar.DAY_OF_YEAR);
+//
+//		Calendar calendariohoy = Calendar.getInstance();
+//		int diaHoy = calendariohoy.get(Calendar.DAY_OF_YEAR);
+//		if (dianacimiento - diaHoy == 0) {// Si la resta de días que llevamos de
+//											// año es 0, significa que hemos
+//											// cumplido años
+//			return calendariohoy.get(Calendar.YEAR) - calendarioNacimiento.get(Calendar.YEAR);
+//
+//		} else {
+//
+//			return calendariohoy.get(Calendar.YEAR) - calendarioNacimiento.get(Calendar.YEAR) - 1;
+//
+//		}
+//
+//	}
 
     public static int getKindCode(String kind) {
 
