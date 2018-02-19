@@ -1,14 +1,6 @@
 package asw.agents.factory;
 
-import asw.agents.web_service.responses.errors.ErrorResponse;
-import asw.agents.web_service.responses.errors.IncorrectPasswordErrorResponse;
-import asw.agents.web_service.responses.errors.PasswordDoNotMatchErrorResponse;
-import asw.agents.web_service.responses.errors.RequiredEmailErrorResponse;
-import asw.agents.web_service.responses.errors.RequiredPasswordErrorResponse;
-import asw.agents.web_service.responses.errors.SameEmailErrorResponse;
-import asw.agents.web_service.responses.errors.UnknownErrorResponse;
-import asw.agents.web_service.responses.errors.UserNotFoundResponse;
-import asw.agents.web_service.responses.errors.WrongEmailStyleErrorResponse;
+import asw.agents.web_service.responses.errors.*;
 
 //Creacion de los distintos tipos de error.
 public class ErrorFactory {
@@ -45,6 +37,8 @@ public class ErrorFactory {
 			return new PasswordDoNotMatchErrorResponse();
 		case SAME_EMAIL:
 			return new SameEmailErrorResponse();
+        case INCORRECT_KIND_DO_NOT_MATCH:
+			return new WrongKindErrorResponse();
 		default:// en caso de no conocer el error.
 			return new UnknownErrorResponse();
 		}
