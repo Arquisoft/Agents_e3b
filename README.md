@@ -25,7 +25,8 @@ Agents module
 
 Ejecucion con Maven:
 - mvn spring-boot:run
-- El servicio arranca en localhost:8080
+- El servicio arranca en localhost:8090
+Esto se puede modificar cambiando el valor del puerto en el fichero src\main\resources\application.properties
 
 Usuarios de prueba para la aplicación:
   
