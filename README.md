@@ -28,37 +28,13 @@ Ejecucion con Maven:
 - El servicio arranca en localhost:8080
 
 Usuarios de prueba para la aplicación:
+  
+- Nombre: 'Paco González', Contraseña: '123456', Localización: '', Email: 'paco@gmail.com', Identificador: 'paco', Tipo: 'Person'
 
-- Email: paco@hotmail.com
-  Contraseña: 123456
-  Nombre: Paco Gómez
-  Fecha de nacimiento: 08/16/1970
-  DNI: 12345678A
-  Dirección: Calle Uría
-  Nacionalidad: Española
+- Nombre: 'Pepe Fernandez', Contraseña: '123456', Localización: '', Email: 'pepe@gmail.com', Identificador: 'pepe', Tipo: 'Person'
 
-- Email: pepe@gmail.com
- Contraseña: 123456
- Nombre: Pepe Fernández
- Fecha de nacimiento: 02/23/1975
- DNI: 87654321B
- Dirección: Calle Principal
- Nacionalidad: Española
+- Nombre: 'Sensor_123 2018', Contraseña: '123456', Localización: '43.361368, -5.853591', Email: admin@sensores.com, Identificador: 'sensor_123', Tipo: 'Sensor'
 
-- Email: carmen@yahoo.com
- Contraseña: 123456
- Nombre: Carmen López
- Fecha de nacimiento: 08/16/1970
- DNI: 11223344C
- Dirección: Calle Calvo Sotelo
- Nacionalidad: Española
+- Nombre: 'Ministerio medioambiente', Contraseña: '123456', Localización: '43.359486, -5.846986', Email: 'ambiente@ministerio.com', Identificador: 'medioambiente', Tipo: 'Entity'
 
-- Email: isabel@gmail.com
- Contraseña: 123456
- Nombre: Isabel Rodríguez
- Fecha de nacimiento: 02/23/1975
- DNI: 22334455D
- Dirección: Avenida Galicia
- Nacionalidad: Española
-
-
+- Nombre: 'Space X sensor model A', Contraseña: '123456', Localización: '33.921209, -118.327940', Email: 'elonmusk@spacex.com', Identificador: 'spacex', Tipo: 'Sensor'
