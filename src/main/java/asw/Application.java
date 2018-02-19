@@ -1,23 +1,14 @@
 package asw;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-
 import asw.db_management.model.Agent;
 import asw.db_management.repository.AgentRepository;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 
-@EnableAutoConfiguration
-@ComponentScan
 @SpringBootApplication
 public class Application {
 
@@ -27,8 +18,8 @@ public class Application {
 
 	@Bean
 	public CommandLineRunner initDB(AgentRepository repository) throws ParseException {
-		// Formato para la fecha
-		DateFormat formatter1 = new SimpleDateFormat("mm/DD/yyyy");
+		// Formato para la fecha ya no es necesario este año.
+		// DateFormat formatter1 = new SimpleDateFormat("mm/DD/yyyy");
 
 		return (args) -> {
 			repository.save(new Agent("Paco González","123456","","paco@gmail.com","paco","Person"));
