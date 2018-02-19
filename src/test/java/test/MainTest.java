@@ -112,11 +112,11 @@ public class MainTest {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/user";
 
-		response = template.postForEntity(userURI, new PeticionInfoREST("paco@gmail.com", "123456"), String.class);
+		response = template.postForEntity(userURI, new PeticionInfoREST("paco@gmail.com", "123456", "Person"), String.class);
 		assertThat(response.getBody(), equalTo(
 				"{\"nombre\":\"Paco González\",\"location\":\"\",\"email\":\"paco@gmail.com\",\"id\":\"paco\",\"kind\":\"Person\",\"kindCode\":1}"));
 
-		response = template.postForEntity(userURI, new PeticionInfoREST("pepe@gmail.com", "123456"), String.class);
+		response = template.postForEntity(userURI, new PeticionInfoREST("pepe@gmail.com", "123456", "Person"), String.class);
 		assertThat(response.getBody(), equalTo(
 				"{\"nombre\":\"Pepe Fernandez\",\"location\":\"\",\"email\":\"pepe@gmail.com\",\"id\":\"pepe\",\"kind\":\"Person\",\"kindCode\":1}"));
 	}
@@ -127,11 +127,11 @@ public class MainTest {
 		String userURI = base.toString() + "/user";
 		String userNotFound = "{\"reason\": \"User not found\"}";
 
-		response = template.postForEntity(userURI, new PeticionInfoREST("ofelia@hotmail.com", "ajksdkje"),
+		response = template.postForEntity(userURI, new PeticionInfoREST("ofelia@hotmail.com", "ajksdkje", "Person"),
 				String.class);
 		assertThat(response.getBody(), equalTo(userNotFound));
 
-		response = template.postForEntity(userURI, new PeticionInfoREST("martin@hotmail.com", "shcxhqw"), String.class);
+		response = template.postForEntity(userURI, new PeticionInfoREST("martin@hotmail.com", "shcxhqw", "Person"), String.class);
 		assertThat(response.getBody(), equalTo(userNotFound));
 	}
 
@@ -140,10 +140,10 @@ public class MainTest {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/user";
 		String incorrectPassword = "{\"reason\": \"Password do not match\"}";
-		response = template.postForEntity(userURI, new PeticionInfoREST("paco@gmail.com", "12356"), String.class);
+		response = template.postForEntity(userURI, new PeticionInfoREST("paco@gmail.com", "12356", "Person"), String.class);
 		assertThat(response.getBody(), equalTo(incorrectPassword));
 
-		response = template.postForEntity(userURI, new PeticionInfoREST("pepe@gmail.com", "12346"), String.class);
+		response = template.postForEntity(userURI, new PeticionInfoREST("pepe@gmail.com", "12346", "Person"), String.class);
 		assertThat(response.getBody(), equalTo(incorrectPassword));
 	}
 
@@ -152,16 +152,16 @@ public class MainTest {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/user";
 		String emptyEmail = "{\"reason\": \"User email is required\"}";
-		response = template.postForEntity(userURI, new PeticionInfoREST("", ""), String.class);
+		response = template.postForEntity(userURI, new PeticionInfoREST("", "", "Person"), String.class);
 		assertThat(response.getBody(), equalTo(emptyEmail));
 
-		response = template.postForEntity(userURI, new PeticionInfoREST("", "1223"), String.class);
+		response = template.postForEntity(userURI, new PeticionInfoREST("", "1223", "Person"), String.class);
 		assertThat(response.getBody(), equalTo(emptyEmail));
 
-		response = template.postForEntity(userURI, new PeticionInfoREST("", "iewgs"), String.class);
+		response = template.postForEntity(userURI, new PeticionInfoREST("", "iewgs", "Person"), String.class);
 		assertThat(response.getBody(), equalTo(emptyEmail));
 
-		response = template.postForEntity(userURI, new PeticionInfoREST("   ", ""), String.class);
+		response = template.postForEntity(userURI, new PeticionInfoREST("   ", "", "Person"), String.class);
 		assertThat(response.getBody(), equalTo(emptyEmail));
 	}
 
@@ -170,16 +170,16 @@ public class MainTest {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/user";
 		String wrongEmailStyle = "{\"reason\": \"Wrong mail style\"}";
-		response = template.postForEntity(userURI, new PeticionInfoREST("ajsjc", ""), String.class);
+		response = template.postForEntity(userURI, new PeticionInfoREST("ajsjc", "", "Person"), String.class);
 		assertThat(response.getBody(), equalTo(wrongEmailStyle));
 
-		response = template.postForEntity(userURI, new PeticionInfoREST("jxjsjd@", ""), String.class);
+		response = template.postForEntity(userURI, new PeticionInfoREST("jxjsjd@", "", "Person"), String.class);
 		assertThat(response.getBody(), equalTo(wrongEmailStyle));
 
-		response = template.postForEntity(userURI, new PeticionInfoREST("chdgetc@chhsy", ""), String.class);
+		response = template.postForEntity(userURI, new PeticionInfoREST("chdgetc@chhsy", "", "Person"), String.class);
 		assertThat(response.getBody(), equalTo(wrongEmailStyle));
 
-		response = template.postForEntity(userURI, new PeticionInfoREST("sjhwuwsc", ""), String.class);
+		response = template.postForEntity(userURI, new PeticionInfoREST("sjhwuwsc", "", "Person"), String.class);
 		assertThat(response.getBody(), equalTo(wrongEmailStyle));
 	}
 
@@ -189,16 +189,16 @@ public class MainTest {
 		String userURI = base.toString() + "/user";
 		String emptyPassword = "{\"reason\": \"User password is required\"}";
 
-		response = template.postForEntity(userURI, new PeticionInfoREST("paco@hotmail.com", ""), String.class);
+		response = template.postForEntity(userURI, new PeticionInfoREST("paco@hotmail.com", "", "Person"), String.class);
 		assertThat(response.getBody(), equalTo(emptyPassword));
 
-		response = template.postForEntity(userURI, new PeticionInfoREST("pepe@gmail.com", ""), String.class);
+		response = template.postForEntity(userURI, new PeticionInfoREST("pepe@gmail.com", "", "Person"), String.class);
 		assertThat(response.getBody(), equalTo(emptyPassword));
 
-		response = template.postForEntity(userURI, new PeticionInfoREST("carmen@yahoo.com", ""), String.class);
+		response = template.postForEntity(userURI, new PeticionInfoREST("carmen@yahoo.com", "", "Person"), String.class);
 		assertThat(response.getBody(), equalTo(emptyPassword));
 
-		response = template.postForEntity(userURI, new PeticionInfoREST("isabel@gmail.com", ""), String.class);
+		response = template.postForEntity(userURI, new PeticionInfoREST("isabel@gmail.com", "", "Person"), String.class);
 		assertThat(response.getBody(), equalTo(emptyPassword));
 	}
 
