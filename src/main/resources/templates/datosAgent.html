@@ -14,8 +14,8 @@
 <h1>Datos personales</h1>
 	<form method="POST" action="confirmEmail" >
 		<label for="email"><strong>Correo:</strong> </label>
-		<input type="text" name="email" th:value="${session.agent.email}"/>
-		<input type="submit" name="cambiarEmail" value="Cambiar email"/>
+		<input type="text" class="form-control" style="width: auto;display: inline-block;" name="email" th:value="${session.agent.email}"/>
+		<input type="submit" class="btn btn-primary" name="cambiarEmail" value="Cambiar email"/>
 	</form>
 	
 	<p><strong>Nombre:</strong> <span th:text="${session.agent.nombre}"></span></p>
@@ -28,7 +28,7 @@
 	<br/>
 	<br/>
 	<form method="POST" action="changeInfo" >
-		<input type="submit" name="cambiarContraseña" value="Cambiar contraseña"/>
+		<input type="submit" class="btn btn-primary" name="cambiarContraseña" value="Cambiar contraseña"/>
 	</form>
 </main>
 </body>
