@@ -447,16 +447,10 @@ public class MainTest {
 	public void T24testHtmlController() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/";
-
+		String str_final = "<!DOCTYPEHTML><html><head><metacharset=\"UTF-8\"/><title>Login</title><linkrel=\"stylesheet\"type=\"text/css\"href=\"/templates/css/styles.css\"/><linkrel=\"stylesheet\"href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css\"/><scriptsrc=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js\"></script><scriptsrc=\"https://code.jquery.com/jquery-3.2.1.slim.min.js\"></script></head><body><mainclass=\"containerlogin_page\"><h1>Login</h1><formmethod=\"POST\"action=\"login\"class=\"form-group\"><table><tr><td><labelfor=\"email\"><strong>Usuario:</strong></label></td><td><inputtype=\"text\"class=\"form-control\"id=\"email\"name=\"email\"/></td></tr><tr><td><labelfor=\"password\"><strong>Contraseña:</strong></label></td><td><inputtype=\"password\"class=\"form-control\"id=\"password\"name=\"password\"/></td></tr><tr><tdcolspan=\"2\"><buttontype=\"submit\"class=\"btnbtn-primarybtn_enviar\"id=\"login\">Entrar</button></td></tr></table></form></main></body></html>";
 		response = template.getForEntity(userURI, String.class);
 		assertThat(response.getBody().replace(" ", "").replace("\n", "").replace("\t", ""),
-				equalTo(("<!DOCTYPEHTML><html><head><metacharset=\"UTF-8\"/><title>Login</title></head><body>"
-						+ "<h1>Login</h1><formmethod=\"POST\"action=\"login\"><table><tr><td><labelfor=\"email\">"
-						+ "<strong>Usuario:</strong></label></td><td><inputtype=\"text\"id=\"email\"name=\"email\"/>"
-						+ "</td></tr><tr><td><labelfor=\"password\"><strong>Contraseña:</strong></label></td><td>"
-						+ "<inputtype=\"password\"id=\"password\"name=\"password\"/></td></tr><tr><td><buttontype="
-						+ "\"submit\"id=\"login\">Entrar</button></td></tr></table></form></body></html>").replace(" ",
-								"")));
+				equalTo((str_final).replace(" ","")));
 	}
 
 	@Test
