@@ -79,7 +79,7 @@ public class MainTest {
 	 */
 
 	@Test
-	public void T1DomainModelEqualsTest() {
+	public void t1DomainModelEqualsTest() {
 		Agent agent1 = getAgent.getAgent("paco@gmail.com");
 		Agent agent2 = getAgent.getAgent("admin@sensores.com");
 		Agent agent3 = getAgent.getAgent("paco@gmail.com");
@@ -92,7 +92,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T2DomainModelToString() {
+	public void t2DomainModelToString() {
 		Agent agent1 = getAgent.getAgent("paco@gmail.com");
 		assertEquals(agent1.toString(),
 				"Agent{" + "nombre='" + agent1.getNombre() + '\'' + ", location='" + agent1.getLocation() + '\''
@@ -101,14 +101,14 @@ public class MainTest {
 	}
 
 	@Test
-	public void T3DomainModelHashCodeTest() {
+	public void t3DomainModelHashCodeTest() {
 		Agent participant1 = getAgent.getAgent("paco@gmail.com");
 		Agent participant3 = getAgent.getAgent("paco@gmail.com");
 		assertEquals(participant1.hashCode(), participant3.hashCode());
 	}
 
 	@Test
-	public void T4participantExistAndCorrectPasssword() {
+	public void t4participantExistAndCorrectPasssword() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/user";
 
@@ -126,7 +126,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T5participantDoNotExist() {
+	public void t5participantDoNotExist() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/user";
 		String userNotFound = "{\"reason\": \"User not found\"}";
@@ -140,7 +140,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T6incorrectPassword() {
+	public void t6incorrectPassword() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/user";
 		String incorrectPassword = "{\"reason\": \"Password do not match\"}";
@@ -152,7 +152,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T7emptyEmail() {
+	public void t7emptyEmail() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/user";
 		String emptyEmail = "{\"reason\": \"User email is required\"}";
@@ -170,7 +170,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T8invalidEmail() {
+	public void t8invalidEmail() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/user";
 		String wrongEmailStyle = "{\"reason\": \"Wrong mail style\"}";
@@ -188,7 +188,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T9emptyPassword() {
+	public void t9emptyPassword() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/user";
 		String emptyPassword = "{\"reason\": \"User password is required\"}";
@@ -207,7 +207,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T10emailRequiredChange() {
+	public void t10emailRequiredChange() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/changeEmail";
 		String emptyEmail = "{\"reason\": \"User email is required\"}";
@@ -223,7 +223,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T12newEmailRequiredChange() {
+	public void t12newEmailRequiredChange() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/changeEmail";
 		String emptyEmail = "{\"reason\": \"User email is required\"}";
@@ -242,7 +242,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T13invalidEmailChange() {
+	public void t13invalidEmailChange() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/changeEmail";
 		String wrongEmailStyle = "{\"reason\": \"Wrong mail style\"}";
@@ -259,7 +259,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T14newInvalidEmailChange() {
+	public void t14newInvalidEmailChange() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/changeEmail";
 		String wrongEmailStyle = "{\"reason\": \"Wrong mail style\"}";
@@ -278,7 +278,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T15emailChangeUserNotFound() {
+	public void t15emailChangeUserNotFound() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/changeEmail";
 		String userNotFound = "{\"reason\": \"User not found\"}";
@@ -297,7 +297,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T16sameEmailErrorChange() {
+	public void t16sameEmailErrorChange() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/changeEmail";
 		String sameEmail = "{\"reason\": \"Same email\"}";
@@ -316,7 +316,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T17emailRequiredPasswordChange() {
+	public void t17emailRequiredPasswordChange() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/changePassword";
 		String emptyEmail = "{\"reason\": \"User email is required\"}";
@@ -332,7 +332,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T18inValidRequiredPasswordChange() {
+	public void t18inValidRequiredPasswordChange() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/changePassword";
 		String wrongEmailStyle = "{\"reason\": \"Wrong mail style\"}";
@@ -349,7 +349,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T19passwordRequiredPasswordChange() {
+	public void t19passwordRequiredPasswordChange() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/changePassword";
 		String passwordRequired = "{\"reason\": \"User password is required\"}";
@@ -368,7 +368,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T20newPasswordRequiredPasswordChange() {
+	public void t20newPasswordRequiredPasswordChange() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/changePassword";
 		String passwordRequired = "{\"reason\": \"User password is required\"}";
@@ -387,7 +387,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T21samePasswordChange() {
+	public void t21samePasswordChange() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/changePassword";
 		String passwordRequired = "{\"reason\": \"Password Incorrect\"}";
@@ -406,7 +406,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T22notFoundParticipantPasswordChange() {
+	public void t22notFoundParticipantPasswordChange() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/changePassword";
 		String userNotFound = "{\"reason\": \"User not found\"}";
@@ -425,7 +425,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T23notSamePasswordChange() {
+	public void t23notSamePasswordChange() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/changePassword";
 		String passwordIncorrect = "{\"reason\": \"Password Incorrect\"}";
@@ -444,7 +444,7 @@ public class MainTest {
 	}
 
 	@Test
-	public void T24testHtmlController() {
+	public void t24testHtmlController() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/";
 		String str_final = "<!DOCTYPEHTML><html><head><metacharset=\"UTF-8\"/><title>Login</title><linkrel=\"stylesheet\"type=\"text/css\"href=\"/templates/css/styles.css\"/><linkrel=\"stylesheet\"href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css\"/><scriptsrc=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js\"></script><scriptsrc=\"https://code.jquery.com/jquery-3.2.1.slim.min.js\"></script></head><body><mainclass=\"containerlogin_page\"><h1>Login</h1><formmethod=\"POST\"action=\"login\"class=\"form-group\"><table><tr><td><labelfor=\"email\"><strong>Usuario:</strong></label></td><td><inputtype=\"text\"class=\"form-control\"id=\"email\"name=\"email\"/></td></tr><tr><td><labelfor=\"password\"><strong>Contraseña:</strong></label></td><td><inputtype=\"password\"class=\"form-control\"id=\"password\"name=\"password\"/></td></tr><tr><tdcolspan=\"2\"><buttontype=\"submit\"class=\"btnbtn-primarybtn_enviar\"id=\"login\">Entrar</button></td></tr></table></form></main></body></html>";
