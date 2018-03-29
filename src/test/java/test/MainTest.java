@@ -36,6 +36,7 @@ import org.springframework.web.client.RestTemplate;
 import asw.Application;
 import asw.db_management.GetAgent;
 import asw.db_management.model.Agent;
+import asw.agents.util.Utilidades;
 import asw.agents.web_service.request.PeticionChangeEmailREST;
 import asw.agents.web_service.request.PeticionChangePasswordREST;
 import asw.agents.web_service.request.PeticionInfoREST;
@@ -107,6 +108,16 @@ public class MainTest {
 		assertEquals(participant1.hashCode(), participant3.hashCode());
 	}
 
+	@Test
+	public void testGetKindCode() {
+		assertThat(Utilidades.getKindCode("NONEXISTENT_KIND"), equalTo(-1));
+		assertThat(Utilidades.getKindCode("Person"), equalTo(1));
+		assertThat(Utilidades.getKindCode("Entity"), equalTo(2));
+		assertThat(Utilidades.getKindCode("Sensor"), equalTo(3));
+		assertThat(Utilidades.getKindCode("Kind With Spaces"), equalTo(4));
+		assertThat(Utilidades.getKindCode("Kind with, commas"), equalTo(5));
+	}
+	
 	@Test
 	public void t4participantExistAndCorrectPasssword() {
 		ResponseEntity<String> response;
