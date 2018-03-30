@@ -1,80 +1,50 @@
 package asw.agents.util;
 
-import java.util.Calendar;
-import java.util.Date;
-
-import java.util.Properties;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.FileReader;
 import java.io.IOException;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Component;
+
 import com.opencsv.CSVReader;
 
-public  class Utilidades {
-	///////////////////////////////////////////////////////////////
-	/// //
-	/// Clase creada para realizar funciones que no //
-	/// tengan que ver con la l�gica de los controladores //
-	/// //
-	//////////////////////////////////////////////////////////
 
-//metido en assert
-//
-//	public static boolean validarCorreo(String mail) {
-//		String[] mailSplit = mail.split("@");
-//		if (mailSplit.length != 2 || mailSplit[0].length() == 0) {
-//			return false;
-//		}
-//		mailSplit = mail.split(".");
-//		if (mailSplit.length != 2 || mailSplit[0].length() == 0 || mailSplit[1].length() == 0) {
-//			return false;
-//		}
-//
-//		return true;
-//	}
+@Component
+public class Utilidades {
+	private static final Logger logger = Logger.getLogger(Utilidades.class);
 
-//	public static int getEdad(Date fechaNacimiento) {
-//		Calendar calendarioNacimiento = Calendar.getInstance();
-//		calendarioNacimiento.setTime(fechaNacimiento);
-//		int dianacimiento = calendarioNacimiento.get(Calendar.DAY_OF_YEAR);
-//
-//		Calendar calendariohoy = Calendar.getInstance();
-//		int diaHoy = calendariohoy.get(Calendar.DAY_OF_YEAR);
-//		if (dianacimiento - diaHoy == 0) {// Si la resta de días que llevamos de
-//											// año es 0, significa que hemos
-//											// cumplido años
-//			return calendariohoy.get(Calendar.YEAR) - calendarioNacimiento.get(Calendar.YEAR);
-//
-//		} else {
-//
-//			return calendariohoy.get(Calendar.YEAR) - calendarioNacimiento.get(Calendar.YEAR) - 1;
-//
-//		}
-//
-//	}
-
-	public static int getKindCode(String kind) {
-		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-		Properties properties = new Properties();
-		try(InputStream resourceStream = classLoader.getResourceAsStream("application.properties")) {
-		    properties.load(resourceStream);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        CSVReader csvReader = null;
-        try {
-        	csvReader = new CSVReader(new InputStreamReader(
-        			classLoader.getResourceAsStream((properties.getProperty("csv.filepathname"))))
-        	);
+	static String csv_filepathname;
+	
+	// Hack to inject value into static variable
+	// (yes, updating static non-final field from 
+	// non-static method is asking for a problem...):
+	@Value("${csv.filepathname:tipo_agentes.csv}") 
+	public void set_csv_filepathname (String filepathname) {
+		csv_filepathname = filepathname;
+	}
+	
+	@Autowired
+	public static int getKindCode(String kind) {	
+		CSVReader csvReader = null;				
+		logger.info("Search kindCode for kind '" + kind + "' on file '" + csv_filepathname + "'");				
+        try {        	
+        	csvReader = new CSVReader(new FileReader (new ClassPathResource(csv_filepathname).getFile()));        	
             String[] nextRow;
             while ((nextRow = csvReader.readNext()) != null) {
-            	if(kind.equals(nextRow[1]))
+            	if(kind.equals(nextRow[1])) {
+            		csvReader.close();
+            		logger.info("Success on finding kindCode '" + nextRow[0] + "' for kind '" + kind + "' on file '" + csv_filepathname + "'");            		
         			return Integer.parseInt(nextRow[0]);
+            	}
             }
             csvReader.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }        
+        }         
+        logger.error("There is not any kindCode for kind '" + kind + "' on file '" + csv_filepathname + "'");
         return -1;
 	}	
 }
