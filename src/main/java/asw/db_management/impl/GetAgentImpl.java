@@ -24,9 +24,18 @@ public class GetAgentImpl implements GetAgent {
 	 * Hace uso del método findByEmail (mapeador)
 	 */
 	@Override
-	public Agent getAgent(String email) {
+	public Agent getAgentEmail(String email) {
 		
 		return this.repository.findByEmail(email);
+	}
+
+	/**
+	 * Método que devuelve el Participante buscado por ident
+	 * Hace uso del método findByEmail (mapeador)
+	 */
+	@Override
+	public Agent getAgentIdent(String ident) {
+		return this.repository.findByIdent(ident);
 	}
 
 }

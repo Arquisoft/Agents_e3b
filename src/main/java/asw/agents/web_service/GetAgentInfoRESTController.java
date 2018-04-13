@@ -33,7 +33,7 @@ public class GetAgentInfoRESTController implements GetAgentInfo {
 		Assert.isEmailValid(peticion.getLogin());
 		Assert.isPasswordEmpty(peticion.getPassword());
 
-		Agent agent = getAgent.getAgent(peticion.getLogin());
+		Agent agent = getAgent.getAgentEmail(peticion.getLogin());
 
 		Assert.isAgentNull(agent);
 

@@ -37,7 +37,7 @@ public class GetAgentInfoHTMLController {
 		Assert.isEmailValid(email);
 		Assert.isPasswordEmpty(password);
 
-		Agent agent = getAgent.getAgent(email);
+		Agent agent = getAgent.getAgentEmail(email);
 
 		Assert.isAgentNull(agent);
 		Assert.isPasswordCorrect(password, agent);
