@@ -4,9 +4,9 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>es.uniovi.asw</groupId>
-	<artifactId>Agents_e3b</artifactId>
+	<artifactId>agents_e3b</artifactId>
 	<name>Agents_e3b</name>
-	<version>0.0.1</version>
+	<version>0.0.1-SNAPSHOT</version>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -69,6 +69,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<start-class>asw.Application</start-class>
+		<docker.image.prefix>arquisoft</docker.image.prefix>
 	</properties>
 
 
@@ -97,6 +98,27 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId> 
+				<version>1.3.6</version>
+				<executions>
+					<execution>
+					<id>default</id>
+					<goals>
+						<goal>build</goal>
+						<goal>push</goal>
+					</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<repository>${docker.image.prefix}/${project.artifactId}</repository>
+					<tag>latest</tag>
+					<buildArgs>
+						<JAR_FILE>target/${project.build.finalName}.${project.packaging}</JAR_FILE>
+					</buildArgs>
+				</configuration>
 			</plugin>
 		</plugins>
 
