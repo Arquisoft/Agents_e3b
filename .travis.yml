@@ -9,7 +9,7 @@ jdk:
   - oraclejdk8
 env:
   - DOCKER_COMPOSE_VERSION=1.20.1
-  
+
 before_install:
   - sudo apt-get update
   - sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common
@@ -26,7 +26,7 @@ before_script:
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
   - sudo service postgresql stop
-  - mvn clean package -U -Dmaven.test.skip=true
+  - mvn clean package -U -Dmaven.test.skip=true -Ddockerfile.googleContainerRegistryEnabled=false
   - docker-compose up -d
 
 after_success:
