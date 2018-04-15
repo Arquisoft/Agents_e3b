@@ -1,7 +1,7 @@
 package asw.agents.util;
 
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +29,14 @@ public class Utilidades {
 	@Autowired
 	public static int getKindCode(String kind) {	
 		CSVReader csvReader = null;				
-		logger.info("Search kindCode for kind '" + kind + "' on file '" + csv_filepathname + "'");				
+		logger.info("Search kindCode for kind '" + kind + "' on file '" + csv_filepathname + "'");
         try {        	
-        	csvReader = new CSVReader(new FileReader (new ClassPathResource(csv_filepathname).getFile()));        	
+        	csvReader = new CSVReader(new InputStreamReader(new ClassPathResource(csv_filepathname).getInputStream()));
             String[] nextRow;
             while ((nextRow = csvReader.readNext()) != null) {
             	if(kind.equals(nextRow[1])) {
             		csvReader.close();
-            		logger.info("Success on finding kindCode '" + nextRow[0] + "' for kind '" + kind + "' on file '" + csv_filepathname + "'");            		
+            		logger.info("Success on finding kindCode '" + nextRow[0] + "' for kind '" + kind + "' on file '" + csv_filepathname + "'");
         			return Integer.parseInt(nextRow[0]);
             	}
             }
