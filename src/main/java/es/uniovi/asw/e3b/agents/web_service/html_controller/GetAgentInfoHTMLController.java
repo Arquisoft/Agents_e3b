@@ -1,22 +1,16 @@
 package es.uniovi.asw.e3b.agents.web_service.html_controller;
 
-import javax.servlet.http.HttpSession;
-
+import es.uniovi.asw.e3b.agents.util.Assert;
+import es.uniovi.asw.e3b.agents.web_service.responses.errors.ErrorResponse;
+import es.uniovi.asw.e3b.db_management.GetAgent;
+import es.uniovi.asw.e3b.db_management.model.Agent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
-import es.uniovi.asw.e3b.db_management.GetAgent;
-import es.uniovi.asw.e3b.db_management.model.Agent;
-import es.uniovi.asw.e3b.agents.util.Assert;
-import es.uniovi.asw.e3b.agents.util.Utilidades;
-import es.uniovi.asw.e3b.agents.web_service.responses.errors.ErrorResponse;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class GetAgentInfoHTMLController {

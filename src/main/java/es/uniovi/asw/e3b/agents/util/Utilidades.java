@@ -1,28 +1,27 @@
 package es.uniovi.asw.e3b.agents.util;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-
+import com.opencsv.CSVReader;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
-import com.opencsv.CSVReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 
 @Component
 public class Utilidades {
 	private static final Logger logger = Logger.getLogger(Utilidades.class);
 
-	static String csv_filepathname;
+	private static String csv_filepathname;
 	
 	// Hack to inject value into static variable
 	// (yes, updating static non-final field from 
 	// non-static method is asking for a problem...):
 	@Value("${csv.filepathname:tipo_agentes.csv}") 
-	public void set_csv_filepathname (String filepathname) {
+	public void setCsvFilepathname(String filepathname) {
 		csv_filepathname = filepathname;
 	}
 	

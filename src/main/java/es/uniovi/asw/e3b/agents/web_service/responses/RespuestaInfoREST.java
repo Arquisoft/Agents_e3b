@@ -1,10 +1,8 @@
 package es.uniovi.asw.e3b.agents.web_service.responses;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import es.uniovi.asw.e3b.db_management.model.Agent;
-import es.uniovi.asw.e3b.agents.util.Utilidades;
+
+import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "agent")
 public class RespuestaInfoREST {	
