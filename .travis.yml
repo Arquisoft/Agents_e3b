@@ -1,10 +1,7 @@
+language: java
 sudo: required
-
 services:
   - docker
-
-language: java
-
 jdk:
   - oraclejdk8
 env:
@@ -20,17 +17,21 @@ before_install:
   - sudo rm /usr/local/bin/docker-compose
   - sudo curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
   - sudo chmod +x /usr/local/bin/docker-compose
+  - sudo service postgresql stop
+
+install:
+  - mvn clean install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3 # give xvfb some time to start
-  - sudo service postgresql stop
-  - mvn clean package -U -Dmaven.test.skip=true -Ddockerfile.googleContainerRegistryEnabled=false
-  - docker-compose up -d
+
+script:
+  - mvn install -B
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 
 after_scrip:
-  - docker-compose down
+  - mvn docker:stop
