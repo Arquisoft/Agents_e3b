@@ -6,7 +6,25 @@
 
 # Agents e3b
 
-Agents module
+Módulo de gestión de Agentes. Escuela Ingeniería Informática Universidad de Oviedo.
+
+## Ejecucion con Maven
+Para la ejecución del módulo Agents, hay que ejecutar:
+
+- `mvn spring-boot:run`
+- El servicio arranca en `localhost:8090`
+
+Esto se puede modificar cambiando el valor del puerto en el fichero [src\main\resources\application.properties](https://github.com/Arquisoft/Agents_e3b/blob/master/src/main/resources/application.properties)
+
+## Datos usuarios de prueba
+
+|Name                     | Password | Location               | Email                    | Ident         | Kind   |
+|-------------------------|----------|------------------------|--------------------------|---------------|--------|
+|Paco González            | 123456   |                        | paco@gmail.com           | paco          | Person |
+|Pepe Fernandez           | 123456   |                        | pepe@gmail.com           | pepe          | Person |
+|Sensor\_123 2018         | 123456   | 43.361368, -5.853591   | admin@sensores.com       | sensor\_123   | Sensor |
+|Ministerio medioambiente | 123456   | 43.359486, -5.846986   | ambiente@ministerio.com  | medioambiente | Entity |
+|Space X sensor model A   | 123456   | 33.921209, -118.327940 | musk@spacex.com          | spacex        | Sensor |
 
 # Authors (2017/2018)
 
@@ -22,20 +40,3 @@ Agents module
 - Martín Peláez Díaz (UO236974)
 - Laura Menéndez Pérez (UO244646)
 - Fernando Palazuelo Ginzo (UO244588)
-
-Ejecucion con Maven:
-- mvn spring-boot:run
-- El servicio arranca en localhost:8090
-Esto se puede modificar cambiando el valor del puerto en el fichero src\main\resources\application.properties
-
-Usuarios de prueba para la aplicación:
-  
-- Nombre: 'Paco González', Contraseña: '123456', Localización: '', Email: 'paco@gmail.com', Identificador: 'paco', Tipo: 'Person'
-
-- Nombre: 'Pepe Fernandez', Contraseña: '123456', Localización: '', Email: 'pepe@gmail.com', Identificador: 'pepe', Tipo: 'Person'
-
-- Nombre: 'Sensor_123 2018', Contraseña: '123456', Localización: '43.361368, -5.853591', Email: admin@sensores.com, Identificador: 'sensor_123', Tipo: 'Sensor'
-
-- Nombre: 'Ministerio medioambiente', Contraseña: '123456', Localización: '43.359486, -5.846986', Email: 'ambiente@ministerio.com', Identificador: 'medioambiente', Tipo: 'Entity'
-
-- Nombre: 'Space X sensor model A', Contraseña: '123456', Localización: '33.921209, -118.327940', Email: 'elonmusk@spacex.com', Identificador: 'spacex', Tipo: 'Sensor'
