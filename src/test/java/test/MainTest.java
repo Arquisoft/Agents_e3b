@@ -49,7 +49,7 @@ public class MainTest {
 	@Value("${local.server.port}")
 	private int port;
 
-	@Value("server.address")
+	@Value("${server.address}")
 	private String address;
 
 	private URL base;
