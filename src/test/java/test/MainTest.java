@@ -5,8 +5,13 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
-import asw.agents.util.Assert;
-import asw.db_management.model.Agent;
+import es.uniovi.asw.e3b.Application;
+import es.uniovi.asw.e3b.db_management.GetAgent;
+import es.uniovi.asw.e3b.db_management.model.Agent;
+import es.uniovi.asw.e3b.agents.util.Utilidades;
+import es.uniovi.asw.e3b.agents.web_service.request.PeticionChangeEmailREST;
+import es.uniovi.asw.e3b.agents.web_service.request.PeticionChangePasswordREST;
+import es.uniovi.asw.e3b.agents.web_service.request.PeticionInfoREST;
 
 
 public class MainTest {
