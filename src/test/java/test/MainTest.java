@@ -33,13 +33,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestTemplate;
 
-import asw.Application;
-import asw.db_management.GetAgent;
-import asw.db_management.model.Agent;
-import asw.agents.util.Utilidades;
-import asw.agents.web_service.request.PeticionChangeEmailREST;
-import asw.agents.web_service.request.PeticionChangePasswordREST;
-import asw.agents.web_service.request.PeticionInfoREST;
+import es.uniovi.asw.e3b.Application;
+import es.uniovi.asw.e3b.db_management.GetAgent;
+import es.uniovi.asw.e3b.db_management.model.Agent;
+import es.uniovi.asw.e3b.agents.util.Utilidades;
+import es.uniovi.asw.e3b.agents.web_service.request.PeticionChangeEmailREST;
+import es.uniovi.asw.e3b.agents.web_service.request.PeticionChangePasswordREST;
+import es.uniovi.asw.e3b.agents.web_service.request.PeticionInfoREST;
 
 @SuppressWarnings("deprecation")
 @RunWith(SpringJUnit4ClassRunner.class)
