@@ -1,17 +1,13 @@
 package test;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
+import es.uniovi.asw.e3b.Application;
+import es.uniovi.asw.e3b.agents.util.Utilidades;
+import es.uniovi.asw.e3b.agents.web_service.request.PeticionChangeEmailREST;
+import es.uniovi.asw.e3b.agents.web_service.request.PeticionChangePasswordREST;
+import es.uniovi.asw.e3b.agents.web_service.request.PeticionInfoREST;
+import es.uniovi.asw.e3b.agents.web_service.responses.RespuestaAuthREST;
+import es.uniovi.asw.e3b.db_management.GetAgent;
+import es.uniovi.asw.e3b.db_management.model.Agent;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -33,13 +29,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestTemplate;
 
-import es.uniovi.asw.e3b.Application;
-import es.uniovi.asw.e3b.db_management.GetAgent;
-import es.uniovi.asw.e3b.db_management.model.Agent;
-import es.uniovi.asw.e3b.agents.util.Utilidades;
-import es.uniovi.asw.e3b.agents.web_service.request.PeticionChangeEmailREST;
-import es.uniovi.asw.e3b.agents.web_service.request.PeticionChangePasswordREST;
-import es.uniovi.asw.e3b.agents.web_service.request.PeticionInfoREST;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.*;
 
 @SuppressWarnings("deprecation")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -478,6 +475,15 @@ public class MainTest {
 		response = template.postForEntity(userURI, new PeticionInfoREST("paco@gmail.com", "123456", "Person"), String.class);
 		assertThat(response.getBody(), equalTo(correctResponse));
 
+	}
+
+	@Test
+	public void testRespuestaAuthREST(){
+		RespuestaAuthREST respuestaAuthREST = new RespuestaAuthREST();
+		respuestaAuthREST = new RespuestaAuthREST("testeo");
+		assertEquals(respuestaAuthREST.getMensaje(),"testeo");
+		respuestaAuthREST.setMensaje("testeo cambiado");
+		assertEquals(respuestaAuthREST.getMensaje(),"testeo cambiado");
 	}
 
 	@Test
