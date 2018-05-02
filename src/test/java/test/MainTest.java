@@ -52,6 +52,9 @@ public class MainTest {
 	@Value("${local.server.port}")
 	private int port;
 
+	@Value("server.address")
+	private String address;
+
 	private URL base;
 	private RestTemplate template;
 
@@ -60,24 +63,20 @@ public class MainTest {
 
 	@Before
 	public void setUp() throws Exception {
-		this.base = new URL("http://localhost:" + port + "/");
+		this.base = new URL("http://"+address+":" + port + "/");
 		template = new TestRestTemplate();
+
+		// TODO: Aquí se podrían precargar los datos de test, llamando al repositorio.
+		/*
+			repository.save(new Agent("Paco González","123456","","paco@gmail.com","paco","Person"));
+			repository.save(new Agent("Pepe Fernandez","123456","","pepe@gmail.com","pepe","Person"));
+			repository.save(new Agent("Sensor_123 2018","123456","43.361368, -5.853591","admin@sensores.com","sensor_123","Sensor"));
+			repository.save(new Agent("Ministerio medioambiente","123456","43.359486, -5.846986","ambiente@ministerio.com","medioambiente","Entity"));
+			repository.save(new Agent("Space X sensor model A","123456","33.921209, -118.327940","elonmusk@spacex.com","spacex","Sensor"));
+		*/
 	}
 
-	// {"login": usuario, "password": password, "kind": tipo de agente}
-	/*
-	 * repository.save(new
-	 * Agent("Paco González","123456","","paco@gmail.com","paco","1"));
-	 * repository.save(new
-	 * Agent("Pepe Fernandez","123456","","pepe@gmail.com","pepe","1"));
-	 * repository.save(new
-	 * Agent("Sensor_123 2018","123456","43.361368, -5.853591","admin@sensores.com",
-	 * "sensor_123","3")); repository.save(new
-	 * Agent("Ministerio medioambiente","123456","43.359486, -5.846986"
-	 * ,"ambiente@ministerio.com","medioambiente","2")); repository.save(new
-	 * Agent("Space X sensor model A","123456","33.921209, -118.327940"
-	 * ,"elonmusk@spacex.com","spacex","2"));
-	 */
+
 
 	@Test
 	public void t1DomainModelEqualsTest() {
@@ -465,6 +464,23 @@ public class MainTest {
 	}
 
 	@Test
+	public void t25emailRequiredChange() {
+		ResponseEntity<String> response;
+		String userURI = base.toString() + "/auth";
+		String incorrectResponse = "{ \"incorrect login\" }";
+		String correctResponse = "{ \"correct login\" }";
+
+		// TEST CASO NEGATIVO
+		response = template.postForEntity(userURI, new PeticionInfoREST("", "", ""), String.class);
+		assertThat(response.getBody(), equalTo(incorrectResponse));
+
+		// TEST CASO POSITIVO
+		response = template.postForEntity(userURI, new PeticionInfoREST("paco@gmail.com", "123456", "Person"), String.class);
+		assertThat(response.getBody(), equalTo(correctResponse));
+
+	}
+
+	@Test
 	public void emailChangeCorrect() {
 		ResponseEntity<String> response;
 		String userURI = base.toString() + "/changeEmail";
@@ -521,6 +537,7 @@ public class MainTest {
 				new PeticionChangeEmailREST("paco1@gmail.com", "123456", "paco@gmail.com"), String.class);
 		assertThat(response.getBody(), equalTo(correctChange));
 	}
+
 
 	// Cabecera HTTP para pedir respuesta en XML
 	public class AcceptInterceptor implements ClientHttpRequestInterceptor {
