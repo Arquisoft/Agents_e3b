@@ -34,8 +34,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertThat;
+
 import static org.junit.Assert.*;
 
 @SuppressWarnings("deprecation")
@@ -60,7 +61,7 @@ public class MainTest {
 
 	@Before
 	public void setUp() throws Exception {
-		this.base = new URL("http://"+address+":" + port + "/");
+		this.base = new URL("http://localhost:" + port + "/"); // TODO no utilizo de momento address
 		template = new TestRestTemplate();
 
 		// TODO: Aquí se podrían precargar los datos de test, llamando al repositorio.
@@ -113,7 +114,7 @@ public class MainTest {
 		assertThat(Utilidades.getKindCode("Kind With Spaces"), equalTo(4));
 		assertThat(Utilidades.getKindCode("Kind with, commas"), equalTo(5));
 	}
-	
+
 	@Test
 	public void t4participantExistAndCorrectPasssword() {
 		ResponseEntity<String> response;
