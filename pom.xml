@@ -6,8 +6,9 @@
 	<groupId>es.uniovi.asw.e3b</groupId>
 	<artifactId>agents_e3b</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>Agents_e3b</name>
-	<description>Consulta y gestión de agentes e3b</description>
+	<description>Módulo de consulta y gestión de agentes</description>
 	<url>https://github.com/Arquisoft/Agents_e3b/</url>
 	<organization>
 		<name>Escuela de Ingeniería Informática de la Universidad de Oviedo</name>
@@ -362,6 +363,13 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>cobertura-maven-plugin</artifactId>
 				<version>${cobertura-maven-plugin}</version>
+				<configuration>
+					<formats>
+						<format>html</format>
+						<format>xml</format>
+					</formats>
+					<check />
+				</configuration>
 			</plugin>
 		</plugins>
 	</reporting>
