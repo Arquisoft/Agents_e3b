@@ -1,4 +1,4 @@
-package test;
+package es.uniovi.asw.e3b;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
