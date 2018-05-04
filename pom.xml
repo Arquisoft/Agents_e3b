@@ -17,7 +17,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.4.3.RELEASE</version>
+		<version>1.5.10.RELEASE</version>
 	</parent>
 
 	<properties>
@@ -33,6 +33,7 @@
 		<springframework.boot.version>1.5.10.RELEASE</springframework.boot.version>
 		<postgresql.version>9.1-901-1.jdbc4</postgresql.version>
 		<opencsv.version>4.1</opencsv.version>
+		<json-unit-fluent.version>1.28.2</json-unit-fluent.version>
 		<jacoco-maven-plugin.version>0.8.0</jacoco-maven-plugin.version>
 		<maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
 		<maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
@@ -84,6 +85,12 @@
 			<groupId>com.opencsv</groupId>
 			<artifactId>opencsv</artifactId>
 			<version>${opencsv.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.javacrumbs.json-unit</groupId>
+			<artifactId>json-unit-fluent</artifactId>
+			<version>${json-unit-fluent.version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
