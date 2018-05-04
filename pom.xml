@@ -28,6 +28,9 @@
 		<maven.build.timestamp.format>yyyy-MM-dd-HH:mm</maven.build.timestamp.format>
 		<java.version>1.8</java.version>
 		<jdk.version>1.8</jdk.version>
+		<argLine>-XX:MaxPermSize=512m</argLine>
+		<surefire.argLine>${argLine}</surefire.argLine>
+		<failsafe.argLine>${argLine}</failsafe.argLine>
 		<start-class>es.uniovi.asw.e3b.Application</start-class>
 		<springframework.boot.version>1.5.10.RELEASE</springframework.boot.version>
 		<postgresql.version>9.1-901-1.jdbc4</postgresql.version>
@@ -40,8 +43,8 @@
 		<maven-javadoc-plugin.version>3.0.0</maven-javadoc-plugin.version>
 		<findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
 		<maven-pmd-plugin.version>3.9.0</maven-pmd-plugin.version>
-		<maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
-		<maven-failsafe-plugin.version>2.18.1</maven-failsafe-plugin.version>
+		<maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
+		<maven-failsafe-plugin.version>2.21.0</maven-failsafe-plugin.version>
 		<cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
 
 		<docker.registry.address>arquisoft.ddns.net</docker.registry.address>
@@ -120,9 +123,6 @@
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
-						<configuration>
-							<propertyName>surefireArgLine</propertyName>
-						</configuration>
 					</execution>
 					<execution>
 						<id>post-unit-test</id>
@@ -137,9 +137,6 @@
 						<goals>
 							<goal>prepare-agent-integration</goal>
 						</goals>
-						<configuration>
-							<propertyName>failsafe.argLine</propertyName>
-						</configuration>
 					</execution>
 					<execution>
 						<id>post-integration-test</id>
@@ -328,7 +325,6 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${maven-surefire-plugin.version}</version>
 				<configuration>
-					<argLine>${surefireArgLine}</argLine>
 					<printSummary>true</printSummary>
 					<excludes>
 						<exclude>**/*IT.java</exclude>
@@ -344,10 +340,9 @@
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<version>${maven-failsafe-plugin.version}</version>
 				<configuration>
-					<argLine>${failsafeArgLine}</argLine>
 					<printSummary>true</printSummary>
 					<includes>
-						<include>**/*</include>
+						<include>**/*IT.java</include>
 						<include>%regex[.*IntegrationTests?\..*]</include>
 						<include>**/*UAT.java</include>
 						<include>%regex[.*AcceptanceTests?\..*]</include>
