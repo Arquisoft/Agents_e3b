@@ -28,6 +28,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import es.uniovi.asw.e3b.Application;
@@ -41,6 +42,13 @@ import es.uniovi.asw.e3b.db_management.model.Agent;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
+@TestPropertySource(properties = { 
+		"spring.datasource.url = jdbc:h2:mem:test;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE",
+		"spring.datasource.username=postgres", 
+		"spring.datasource.password=changeit",
+		"spring.jpa.hibernate.ddl-auto=create-drop", 
+		"spring.datasource.driverClassName=org.h2.Driver" 
+		})
 
 public class MainTest {
 
