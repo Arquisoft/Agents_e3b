@@ -40,8 +40,8 @@
 		<maven-javadoc-plugin.version>3.0.0</maven-javadoc-plugin.version>
 		<findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
 		<maven-pmd-plugin.version>3.9.0</maven-pmd-plugin.version>
-		<maven-surefire-plugin.version>2.20.1</maven-surefire-plugin.version>
-		<maven-failsafe-plugin.version>2.20.1</maven-failsafe-plugin.version>
+		<maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
+		<maven-failsafe-plugin.version>2.18.1</maven-failsafe-plugin.version>
 		<cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
 	</properties>
 
@@ -107,16 +107,66 @@
 				<version>${jacoco-maven-plugin.version}</version>
 				<executions>
 					<execution>
+						<id>pre-unit-test</id>
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
+						<configuration>
+							<propertyName>surefireArgLine</propertyName>
+						</configuration>
 					</execution>
 					<execution>
-						<id>report</id>
+						<id>post-unit-test</id>
 						<phase>test</phase>
 						<goals>
 							<goal>report</goal>
 						</goals>
+					</execution>
+					<execution>
+						<id>pre-integration-test</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>prepare-agent-integration</goal>
+						</goals>
+						<configuration>
+							<propertyName>failsafe.argLine</propertyName>
+						</configuration>
+					</execution>
+					<execution>
+						<id>post-integration-test</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>report-integration</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>merge-results</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>merge</goal>
+						</goals>
+						<configuration>
+							<fileSets>
+								<fileSet>
+									<directory>${project.build.directory}</directory>
+									<includes>
+										<include>jacoco*.exec</include>
+									</includes>
+								</fileSet>
+							</fileSets>
+							<destFile>${project.build.directory}/jacoco-aggregate.exec</destFile>
+						</configuration>
+					</execution>
+					<execution>
+						<id>post-merge-report</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<dataFile>${project.build.directory}/jacoco-aggregate.exec</dataFile>
+							<outputDirectory>${project.reporting.outputDirectory}/jacoco-aggregate</outputDirectory>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
@@ -142,7 +192,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
-
 	</build>
 
 	<reporting>
@@ -177,8 +226,43 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-				<version>${maven-surefire-report-plugin.version}</version>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+				<configuration>
+					<argLine>${surefireArgLine}</argLine>
+					<printSummary>true</printSummary>
+					<excludes>
+						<exclude>**/*IT.java</exclude>
+						<exclude>%regex[.*IntegrationTests?\..*]</exclude>
+						<exclude>**/*UAT.java</exclude>
+						<exclude>%regex[.*AcceptanceTests?\..*]</exclude>
+					</excludes>
+					<runOrder>alphabetical</runOrder>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>${maven-failsafe-plugin.version}</version>
+				<configuration>
+					<argLine>${failsafeArgLine}</argLine>
+					<printSummary>true</printSummary>
+					<includes>
+						<include>**/*</include>
+						<include>%regex[.*IntegrationTests?\..*]</include>
+						<include>**/*UAT.java</include>
+						<include>%regex[.*AcceptanceTests?\..*]</include>
+					</includes>
+					<runOrder>alphabetical</runOrder>
+					<executions>
+						<execution>
+							<goals>
+								<goal>integration-test</goal>
+								<goal>verify</goal>
+							</goals>
+						</execution>
+					</executions>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
