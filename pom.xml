@@ -32,7 +32,7 @@
 		<argLine>-XX:MaxPermSize=512m</argLine>
 		<surefire.argLine>${argLine}</surefire.argLine>
 		<failsafe.argLine>${argLine}</failsafe.argLine>
-		<start-class>es.uniovi.asw.e3b.Application</start-class>
+		<start-class>es.uniovi.asw.e3b.agents_e3b.Application</start-class>
 		<postgresql.version>9.1-901-1.jdbc4</postgresql.version>
 		<opencsv.version>4.1</opencsv.version>
 		<json-unit-fluent.version>1.28.2</json-unit-fluent.version>
