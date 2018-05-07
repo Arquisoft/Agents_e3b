@@ -46,7 +46,13 @@
 		<cobertura-maven-plugin.version>2.7</cobertura-maven-plugin.version>
 
 		<docker.registry.address>arquisoft.ddns.net</docker.registry.address>
-		<agents.server.address>localhost</agents.server.address>
+		<docker.base.image>maven:3.5-jdk-8-alpine</docker.base.image>
+		<postgres.docker.alias>postgres</postgres.docker.alias>
+		<postgres.server.port>5432</postgres.server.port>
+		<postgres.user>postgres</postgres.user>
+		<postgres.password>changeit</postgres.password>
+		<spring.datasource.url>jdbc:postgresql://${postgres.docker.alias}:${postgres.server.port}/postgres</spring.datasource.url>
+		<agents.docker.alias>${project.artifactId}</agents.docker.alias>
 		<agents.server.port>8090</agents.server.port>
 	</properties>
 
@@ -119,6 +125,118 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>${docker-maven-plugin-fabric8.version}</version>
+				<configuration>
+					<logDate>none</logDate>
+					<userColor>true</userColor>
+					<imagePullPolicy>IfNotPresent</imagePullPolicy>
+					<images>
+						<image>
+							<alias>${postgres.docker.alias}</alias>
+							<name>${postgres.docker.alias}:alpine</name>
+							<run>
+								<env>
+									<POSTGRES_USER>${postgres.user}</POSTGRES_USER>
+									<POSTGRES_PASSWORD>${postgres.password}</POSTGRES_PASSWORD>
+								</env>
+								<ports>
+									<port>${postgres.server.port}:${postgres.server.port}</port>
+								</ports>
+								<wait>
+									<log>^.*database system is ready to accept connections.*$</log>
+									<time>30000</time>
+								</wait>
+								<log>
+									<enabled>true</enabled>
+									<prefix>%a [%C] |</prefix>
+									<color>blue</color>
+								</log>
+							</run>
+						</image>
+						<image>
+							<alias>${agents.docker.alias}</alias>
+							<name>${docker.registry.address}/${agents.docker.alias}</name>
+							<build>
+								<from>${docker.base.image}</from>
+								<tags>
+									<tag>latest</tag>
+									<tag>${project.version}</tag>
+								</tags>
+								<assembly>
+									<inline>
+										<fileSets>
+											<fileSet>
+												<directory>${project.build.directory}</directory>
+												<includes>
+													<include>${project.artifactId}-${project.version}.${project.packaging}</include>
+												</includes>
+												<outputDirectory>/usr/share/${project.artifactId}/</outputDirectory>
+											</fileSet>
+										</fileSets>
+									</inline>
+								</assembly>
+								<ports>
+									<port>${agents.server.port}</port>
+								</ports>
+								<entryPoint>
+									<arg>/usr/bin/java</arg>
+									<arg>-Djava.security.egd=file:/dev/./urandom</arg>
+									<arg>-jar</arg>
+									<arg>/maven/usr/share/${project.artifactId}/${project.artifactId}-${project.version}.${project.packaging}</arg>
+									<arg>--spring.datasource.url=${spring.datasource.url}</arg>
+									<arg>--spring.datasource.username=${postgres.user}</arg>
+									<arg>--spring.datasource.password=${postgres.password}</arg>
+								</entryPoint>
+							</build>
+							<run>
+								<volumes>
+									<bind>
+										<volume>/tmp</volume>
+									</bind>
+								</volumes>
+								<ports>
+									<port>${agents.server.port}:${agents.server.port}</port>
+								</ports>
+								<wait>
+									<url>http://${docker.host.address}:${agents.server.port}</url>
+									<time>30000</time>
+								</wait>
+								<links>
+									<link>${postgres.docker.alias}</link>
+								</links>
+								<dependsOn>
+									<container>${postgres.docker.alias}</container>
+								</dependsOn>
+								<log>
+									<enabled>true</enabled>
+									<prefix>%a [%C] |</prefix>
+									<color>cyan</color>
+								</log>
+							</run>
+						</image>
+					</images>
+				</configuration>
+				<executions>
+					<execution>
+						<id>start</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>build</goal>
+							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>stop</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -221,117 +339,6 @@
 							<dataFile>${project.build.directory}/jacoco-aggregate.exec</dataFile>
 							<outputDirectory>${project.reporting.outputDirectory}/jacoco-aggregate</outputDirectory>
 						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>io.fabric8</groupId>
-				<artifactId>docker-maven-plugin</artifactId>
-				<version>${docker-maven-plugin-fabric8.version}</version>
-				<configuration>
-					<logDate>none</logDate>
-					<autoPull>true</autoPull>
-					<userColor>true</userColor>
-					<showLogs>true</showLogs>
-					<images>
-						<image>
-							<alias>postgres</alias>
-							<name>postgres:alpine</name>
-							<run>
-								<env>
-									<POSTGRES_USER>postgres</POSTGRES_USER>
-									<POSTGRES_PASSWORD>changeit</POSTGRES_PASSWORD>
-								</env>
-								<ports>
-									<port>5432:5432</port>
-								</ports>
-								<wait>
-									<log>database system is ready to accept connections</log>
-									<time>30000</time>
-								</wait>
-								<log>
-									<enabled>true</enabled>
-									<prefix>%a [%C] |</prefix>
-									<color>blue</color>
-								</log>
-							</run>
-						</image>
-						<image>
-							<alias>${project.artifactId}</alias>
-							<name>${docker.registry.address}/${project.artifactId}</name>
-							<build>
-								<from>maven:3.5-jdk-8-alpine</from>
-								<tags>
-									<tag>latest</tag>
-									<tag>${project.version}</tag>
-								</tags>
-								<assembly>
-									<inline>
-										<fileSets>
-											<fileSet>
-												<directory>${project.build.directory}</directory>
-												<includes>
-													<include>*.jar</include>
-												</includes>
-												<outputDirectory>/usr/share/${project.artifactId}/</outputDirectory>
-											</fileSet>
-										</fileSets>
-									</inline>
-								</assembly>
-								<ports>
-									<port>${agents.server.port}</port>
-								</ports>
-								<entryPoint>
-									<arg>/usr/bin/java</arg>
-									<arg>-Djava.security.egd=file:/dev/./urandom</arg>
-									<arg>-jar</arg>
-									<arg>/maven/usr/share/${project.artifactId}/${project.artifactId}-${project.version}.${project.packaging}</arg>
-									<arg>--spring.datasource.url=jdbc:postgresql://postgres:5432/postgres</arg>
-								</entryPoint>
-							</build>
-							<run>
-								<volumes>
-									<bind>
-										<volume>/tmp</volume>
-									</bind>
-								</volumes>
-								<ports>
-									<port>${agents.server.port}:${agents.server.port}</port>
-								</ports>
-								<wait>
-									<url>http://${docker.host.address}:${agents.server.port}</url>
-									<time>30000</time>
-								</wait>
-								<links>
-									<link>postgres</link>
-								</links>
-								<dependsOn>
-									<container>postgres</container>
-								</dependsOn>
-								<log>
-									<enabled>true</enabled>
-									<prefix>%a [%C] |</prefix>
-									<color>cyan</color>
-								</log>
-							</run>
-						</image>
-					</images>
-				</configuration>
-				<executions>
-					<execution>
-						<id>start</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>build</goal>
-							<goal>start</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>stop</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>stop</goal>
-						</goals>
 					</execution>
 				</executions>
 			</plugin>
