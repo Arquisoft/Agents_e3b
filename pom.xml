@@ -47,6 +47,7 @@
 
 		<docker.registry.address>arquisoft.ddns.net</docker.registry.address>
 		<docker.base.image>maven:3.5-jdk-8-alpine</docker.base.image>
+		<docker.backend.network.name>backend</docker.backend.network.name>
 		<postgres.docker.alias>postgres</postgres.docker.alias>
 		<postgres.server.port>5432</postgres.server.port>
 		<postgres.user>postgres</postgres.user>
@@ -134,6 +135,7 @@
 					<logDate>none</logDate>
 					<userColor>true</userColor>
 					<imagePullPolicy>IfNotPresent</imagePullPolicy>
+					<autoCreateCustomNetworks>true</autoCreateCustomNetworks>
 					<images>
 						<image>
 							<alias>${postgres.docker.alias}</alias>
@@ -146,6 +148,11 @@
 								<ports>
 									<port>${postgres.server.port}:${postgres.server.port}</port>
 								</ports>
+								<network>
+									<mode>custom</mode>
+									<name>${docker.backend.network.name}</name>
+									<alias>${postgres.docker.alias}</alias>
+								</network>
 								<wait>
 									<log>^.*database system is ready to accept connections.*$</log>
 									<time>30000</time>
@@ -201,16 +208,18 @@
 								<ports>
 									<port>${agents.server.port}:${agents.server.port}</port>
 								</ports>
-								<wait>
-									<url>http://${docker.host.address}:${agents.server.port}</url>
-									<time>30000</time>
-								</wait>
-								<links>
-									<link>${postgres.docker.alias}</link>
-								</links>
+								<network>
+									<mode>custom</mode>
+									<name>${docker.backend.network.name}</name>
+									<alias>${agents.docker.alias}</alias>
+								</network>
 								<dependsOn>
 									<container>${postgres.docker.alias}</container>
 								</dependsOn>
+								<wait>
+									<url>http://${docker.host.address}:${agents.server.port}</url>
+									<time>90000</time>
+								</wait>
 								<log>
 									<enabled>true</enabled>
 									<prefix>%a [%C] |</prefix>
