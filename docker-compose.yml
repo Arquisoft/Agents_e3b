@@ -1,23 +1,35 @@
 version: '3.6'
 
-services:
+networks:
+  backend_network:
+    external:
+      name: backend_network
 
+services:
   postgres:
     image: postgres:alpine
-    ports:
-      - "5432:5432"
-    restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: changeit
+    ports:
+      - "5432:5432"
+    networks:
+      - backend_network
 
-  agents:
+  agents_e3b:
     build:
       context: .
-      args:
-        JAR_FILE: /target/agents_e3b-0.0.1-SNAPSHOT.jar
-    image: arquisoft/agents_e3b
+    image: arquisoft.ddns.net/agents_e3b
+    environment:
+      SERVER_PORT: 8090
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: changeit
     ports:
       - "8090:8090"
-    links:
+    networks:
+      - backend_network
+    volumes:
+      - /tmp
+    depends_on:
       - postgres
