@@ -216,10 +216,10 @@
 									<SERVER_PORT>${server.port}</SERVER_PORT>
 									<SPRING_DATASOURCE_URL>${spring.datasource.url}</SPRING_DATASOURCE_URL>
 									<SPRING_DATASOURCE_USERNAME>${spring.datasource.username}</SPRING_DATASOURCE_USERNAME>
-									<SPRING_DATASOURCE.PASSWORD>${spring.datasource.password}</SPRING_DATASOURCE.PASSWORD>
+									<SPRING_DATASOURCE_PASSWORD>${spring.datasource.password}</SPRING_DATASOURCE_PASSWORD>
 									<SPRING_DATASOURCE_DRIVERCLASSNAME>${spring.datasource.driverClassName}</SPRING_DATASOURCE_DRIVERCLASSNAME>
 									<SPRING_JPA_DATABASE_PLATFORM>${spring.jpa.database-platform}</SPRING_JPA_DATABASE_PLATFORM>
-									<SPRING_JPA_HIBERNATE_DDL-AUTO>${spring.jpa.hibernate.ddl-auto}</SPRING_JPA_HIBERNATE_DDL-AUTO>
+									<SPRING_JPA_HIBERNATE_DDL_AUTO>${spring.jpa.hibernate.ddl-auto}</SPRING_JPA_HIBERNATE_DDL_AUTO>
 									<CSV_FILEPATHNAME>${csv.filepathname}</CSV_FILEPATHNAME>
 								</env>
 								<ports>
