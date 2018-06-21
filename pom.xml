@@ -59,16 +59,15 @@
 		<agents.docker.alias>${project.artifactId}</agents.docker.alias>
 		<agents.docker.image>${docker.registry.address}/${agents.docker.alias}</agents.docker.image>
 		<agents.server.port>8090</agents.server.port>
+		<agents.cvs.filepathname>tipo_agentes.csv</agents.cvs.filepathname>
 
 		<server.port>${agents.server.port}</server.port>
-
 		<spring.datasource.url>jdbc:postgresql://${postgres.docker.alias}:${postgres.server.port}/${postgres.db}</spring.datasource.url>
 		<spring.datasource.username>${postgres.user}</spring.datasource.username>
 		<spring.datasource.password>${postgres.password}</spring.datasource.password>
 		<spring.datasource.driverClassName>org.postgresql.Driver</spring.datasource.driverClassName>
 		<spring.jpa.hibernate.ddl-auto>create-drop</spring.jpa.hibernate.ddl-auto>
-
-		<csv.filepathname>tipo_agentes.csv</csv.filepathname>
+		<csv.filepathname>${agents.cvs.filepathname}</csv.filepathname>
 	</properties>
 
 	<dependencies>
