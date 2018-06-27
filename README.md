@@ -9,6 +9,9 @@
 
 Módulo de gestión de Agentes. Escuela Ingeniería Informática Universidad de Oviedo.
 
+![Interfaz Agents](https://user-images.githubusercontent.com/17082987/41993985-47e892d6-7a4d-11e8-8fc6-aa5e9bfa86a2.png)
+Captura de pantalla de la página de login ([ver más sobre el diseño web en esta wiki](https://github.com/Arquisoft/Inci_e3b_modules/wiki/Interfaz-de-usuario---capturas-de-pantalla)):
+
 ## Ejecucion con Maven
 Para la ejecución del módulo Agents, hay que ejecutar:
 
