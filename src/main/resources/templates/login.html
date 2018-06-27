@@ -1,31 +1,29 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
- 	<meta charset="UTF-8"/>
- 	<title>Login</title>
-	<link rel="stylesheet" type="text/css" href="/templates/css/styles.css"/>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Agents</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"/>
+	<link rel="stylesheet" href="/css/Login-Form-Clean.css"/>
+	<link rel="stylesheet" href="/css/Navigation-Clean.css"/>
+	<link rel="stylesheet" href="/css/styles.css"/>
+	<link rel="shortcut icon" href="/img/favicon.png" />
 </head>
 <body>
-<main class="container login_page">
-<h1>Login</h1>
-<form method="POST" action="login" class="form-group">
-	<table>
-		<tr>
-			<td><label for="email"><strong>Usuario:</strong> </label></td>
-			<td><input type="text" class="form-control" id="email" name="email"/></td>
-		</tr>
-		<tr>
-			<td><label for="password"><strong>Contraseña:</strong> </label></td>
-			<td><input type="password" class="form-control" id="password" name="password" /></td>
-		</tr>
-		<tr>
-			<td colspan="2"><button type="submit" class="btn btn-primary btn_enviar" id="login">Entrar</button></td>
-		</tr>
-	</table>
-</form>
-</main>
+<div class="login-clean">
+	<form method="post" action="/login">
+		<h2 class="sr-only">Login Form</h2>
+		<div class="illustration"><em class="fa fa-cogs"></em></div>
+		<div class="form-group"><label for="email" style="display: none;"><strong>username</strong></label><input class="form-control" type="text" id="email" name="email" placeholder="Email"/></div>
+		<div class="form-group"><label for="password" style="display: none;"><strong>password</strong></label><input class="form-control" type="password" id="password" name="password" placeholder="Password"/></div>
+		<div class="form-group"><button class="btn btn-primary btn-block" id="login" type="submit">Log In</button></div>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	</form>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,18 +1,26 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-	<meta charset="UTF-8"/>
-	<title>Error</title>
-	<link rel="stylesheet" type="text/css" href="/templates/css/styles.css"/>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>Agents - error</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"/>
+	<link rel="stylesheet" href="/css/Login-Form-Clean.css"/>
+	<link rel="stylesheet" href="/css/Navigation-Clean.css"/>
+	<link rel="stylesheet" href="/css/styles.css"/>
+	<link rel="shortcut icon" href="/img/favicon.png" />
 </head>
 <body>
-<main class="container">
-	<h1>Error</h1>
-	<p>Ha ocurrido el siguiente error: <strong><span th:text="${error}"></span></strong></p>
-	<a id="login" href="/">Vuelva a intentarlo</a>
-</main>
+<div class="super-wrapper">
+	<div class="clean-wrapper">
+		<h1>Error</h1>
+		<p>Ha ocurrido el siguiente error: <strong><span th:text="${error}"></span></strong></p>
+		<a id="login" href="/">Vuelva a intentarlo</a>
+	</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
