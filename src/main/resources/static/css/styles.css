@@ -31,5 +31,23 @@ body {
   text-align: center;
   padding: 0 0 20px;
   font-size: 100px;
-  color: #7e47f4;
+  color: #19a821;
+}
+
+.btn-primary{
+  color:#fff;
+  background-color: #34ad3a;
+  border-color: #329b37;
+}
+
+.btn-primary:hover{
+  background-color: #2e9234;
+}
+
+a{
+  color: #19b521;
+}
+a:hover{
+  color: #189d1f;
+  text-decoration: underline;
 }
