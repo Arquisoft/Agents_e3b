@@ -19,6 +19,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.4.7.RELEASE</version>
+		<relativePath />
 	</parent>
 
 	<properties>
@@ -47,14 +48,28 @@
 
 		<docker.registry.address>arquisoft.ddns.net</docker.registry.address>
 		<docker.base.image>maven:3.5-jdk-8-alpine</docker.base.image>
-		<docker.backend.network.name>backend</docker.backend.network.name>
+		<docker.backend.network.name>backend_network</docker.backend.network.name>
+
 		<postgres.docker.alias>postgres</postgres.docker.alias>
+		<postgres.docker.image>${postgres.docker.alias}:alpine</postgres.docker.image>
 		<postgres.server.port>5432</postgres.server.port>
 		<postgres.user>postgres</postgres.user>
 		<postgres.password>changeit</postgres.password>
-		<spring.datasource.url>jdbc:postgresql://${postgres.docker.alias}:${postgres.server.port}/postgres</spring.datasource.url>
+		<postgres.db>${postgres.user}</postgres.db>
+
 		<agents.docker.alias>${project.artifactId}</agents.docker.alias>
+		<agents.docker.image>${docker.registry.address}/${agents.docker.alias}</agents.docker.image>
 		<agents.server.port>8090</agents.server.port>
+		<agents.cvs.filepathname>tipo_agentes.csv</agents.cvs.filepathname>
+
+		<server.port>${agents.server.port}</server.port>
+		<spring.datasource.url>jdbc:postgresql://${postgres.docker.alias}:${postgres.server.port}/${postgres.db}</spring.datasource.url>
+		<spring.datasource.username>${postgres.user}</spring.datasource.username>
+		<spring.datasource.password>${postgres.password}</spring.datasource.password>
+		<spring.datasource.driverClassName>org.postgresql.Driver</spring.datasource.driverClassName>
+		<spring.jpa.database-platform>org.hibernate.dialect.PostgreSQLDialect</spring.jpa.database-platform>
+		<spring.jpa.hibernate.ddl-auto>create-drop</spring.jpa.hibernate.ddl-auto>
+		<csv.filepathname>${agents.cvs.filepathname}</csv.filepathname>
 	</properties>
 
 	<dependencies>
@@ -139,11 +154,12 @@
 					<images>
 						<image>
 							<alias>${postgres.docker.alias}</alias>
-							<name>${postgres.docker.alias}:alpine</name>
+							<name>${postgres.docker.image}</name>
 							<run>
 								<env>
 									<POSTGRES_USER>${postgres.user}</POSTGRES_USER>
 									<POSTGRES_PASSWORD>${postgres.password}</POSTGRES_PASSWORD>
+									<POSTGRES_DB>${postgres.db}</POSTGRES_DB>
 								</env>
 								<ports>
 									<port>${postgres.server.port}:${postgres.server.port}</port>
@@ -166,7 +182,7 @@
 						</image>
 						<image>
 							<alias>${agents.docker.alias}</alias>
-							<name>${docker.registry.address}/${agents.docker.alias}</name>
+							<name>${agents.docker.image}</name>
 							<build>
 								<from>${docker.base.image}</from>
 								<tags>
@@ -194,17 +210,19 @@
 									<arg>-Djava.security.egd=file:/dev/./urandom</arg>
 									<arg>-jar</arg>
 									<arg>/maven/usr/share/${project.artifactId}/${project.artifactId}-${project.version}.${project.packaging}</arg>
-									<arg>--spring.datasource.url=${spring.datasource.url}</arg>
-									<arg>--spring.datasource.username=${postgres.user}</arg>
-									<arg>--spring.datasource.password=${postgres.password}</arg>
 								</entryPoint>
 							</build>
 							<run>
-								<volumes>
-									<bind>
-										<volume>/tmp</volume>
-									</bind>
-								</volumes>
+								<env>
+									<SERVER_PORT>${server.port}</SERVER_PORT>
+									<SPRING_DATASOURCE_URL>${spring.datasource.url}</SPRING_DATASOURCE_URL>
+									<SPRING_DATASOURCE_USERNAME>${spring.datasource.username}</SPRING_DATASOURCE_USERNAME>
+									<SPRING_DATASOURCE_PASSWORD>${spring.datasource.password}</SPRING_DATASOURCE_PASSWORD>
+									<SPRING_DATASOURCE_DRIVERCLASSNAME>${spring.datasource.driverClassName}</SPRING_DATASOURCE_DRIVERCLASSNAME>
+									<SPRING_JPA_DATABASE_PLATFORM>${spring.jpa.database-platform}</SPRING_JPA_DATABASE_PLATFORM>
+									<SPRING_JPA_HIBERNATE_DDL_AUTO>${spring.jpa.hibernate.ddl-auto}</SPRING_JPA_HIBERNATE_DDL_AUTO>
+									<CSV_FILEPATHNAME>${csv.filepathname}</CSV_FILEPATHNAME>
+								</env>
 								<ports>
 									<port>${agents.server.port}:${agents.server.port}</port>
 								</ports>
@@ -213,6 +231,11 @@
 									<name>${docker.backend.network.name}</name>
 									<alias>${agents.docker.alias}</alias>
 								</network>
+								<volumes>
+									<bind>
+										<volume>/tmp</volume>
+									</bind>
+								</volumes>
 								<dependsOn>
 									<container>${postgres.docker.alias}</container>
 								</dependsOn>
@@ -359,6 +382,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>${maven-project-info-reports-plugin.version}</version>
 				<configuration>
 					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
 					<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
@@ -382,12 +406,12 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
-				<version>${maven-pmd-plugin}</version>
+				<version>${maven-pmd-plugin.version}</version>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>cobertura-maven-plugin</artifactId>
-				<version>${cobertura-maven-plugin}</version>
+				<version>${cobertura-maven-plugin.version}</version>
 				<configuration>
 					<formats>
 						<format>html</format>
