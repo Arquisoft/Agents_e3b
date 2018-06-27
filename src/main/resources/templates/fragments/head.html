@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
 <head>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<title>Agents - error</title>
+	<title>Agents</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css"/>
@@ -12,16 +10,3 @@
 	<link rel="stylesheet" href="/css/styles.css"/>
 	<link rel="shortcut icon" href="/img/favicon.png" />
 </head>
-<body>
-<nav th:replace="fragments/navbar" />
-<div class="super-wrapper">
-	<div class="clean-wrapper">
-		<h1>Error</h1>
-		<p>Ha ocurrido el siguiente error: <strong><span th:text="${error}"></span></strong></p>
-		<a id="login" href="/">Vuelva a intentarlo</a>
-	</div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
