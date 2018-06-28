@@ -24,7 +24,7 @@ public class ChangeInfoHTMLController {
 
 	@RequestMapping(value = "/confirmPassword", method = RequestMethod.POST)
 	public String changePassword(HttpSession session, @RequestParam String password,
-			@RequestParam String newPassword, Model model) {
+								 @RequestParam String newPassword, Model model) {
 		Assert.isPasswordEmpty(password);
 		Assert.isPasswordEmpty(newPassword);
 		Assert.isSamePassword(password, newPassword);
@@ -39,9 +39,9 @@ public class ChangeInfoHTMLController {
 
 		// Mensaje a mostrar en HTML
 		model.addAttribute("info", "Contraseña actualizada correctamente");
-		return "datosParticipant";
+		return "datosAgent";
 	}
-	
+
 	@RequestMapping(value = "/confirmEmail", method = RequestMethod.POST)
 	public String changeEmail(HttpSession session, @RequestParam String email, Model model) {
 		Assert.isEmailEmpty(email);
@@ -57,7 +57,7 @@ public class ChangeInfoHTMLController {
 
 		// Mensaje a mostrar en HTML
 		model.addAttribute("info", "Email actualizado correctamente");
-		return "datosParticipant";
+		return "datosAgent";
 	}
 
 	@ExceptionHandler(ErrorResponse.class)
