@@ -1,21 +1,16 @@
 package es.uniovi.asw.e3b.agents_e3b.agents.web_service.html_controller;
 
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
 import es.uniovi.asw.e3b.agents_e3b.agents.util.Assert;
 import es.uniovi.asw.e3b.agents_e3b.agents.web_service.responses.errors.ErrorResponse;
 import es.uniovi.asw.e3b.agents_e3b.db_management.UpdateInfo;
 import es.uniovi.asw.e3b.agents_e3b.db_management.model.Agent;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class ChangeInfoHTMLController {
@@ -34,7 +29,7 @@ public class ChangeInfoHTMLController {
 		Assert.isPasswordEmpty(newPassword);
 		Assert.isSamePassword(password, newPassword);
 
-		// Participant que se ha logeado antes
+		// Agent que se ha logeado antes
 		Agent p = (Agent) session.getAttribute("agent");
 		Assert.isAgentNull(p);
 		Assert.isPasswordCorrect(password, p);
@@ -52,8 +47,8 @@ public class ChangeInfoHTMLController {
 		Assert.isEmailEmpty(email);
 		Assert.isEmailValid(email);
 
-		// Participant que se ha logeado antes
-		Agent p = (Agent) session.getAttribute("participant");
+		// Agent que se ha logeado antes
+		Agent p = (Agent) session.getAttribute("agent");
 		Assert.isAgentNull(p);
 		Assert.isSameEmail(email, p.getEmail());
 
